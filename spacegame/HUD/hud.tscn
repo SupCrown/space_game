@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cuddj6nfy53yh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4t24e"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_h61sl"]
+font_size = 25
+
+[node name="HUD" type="MarginContainer" unique_id=1424467486]
+custom_minimum_size = Vector2(800, 600)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="Label" parent="." unique_id=823441658]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "545"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=857607562]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2101834229]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=901962935]
+layout_mode = 2
+text = "PERDU"
+label_settings = SubResource("LabelSettings_4t24e")
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1495388368]
+layout_mode = 2
+text = "545"
+label_settings = SubResource("LabelSettings_h61sl")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=833816977]
+layout_mode = 2
+text = "Réessayer"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1844022521]
+layout_mode = 2
+text = "Retour 	au menu
+"

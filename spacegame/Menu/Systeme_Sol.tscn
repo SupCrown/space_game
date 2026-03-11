@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3kaebwg1dise"]
+
+[ext_resource type="Script" uid="uid://d3j4rpl6dt3h6" path="res://Menu/systeme_sol.gd" id="1_tkdc1"]
+[ext_resource type="PackedScene" uid="uid://bx2q4qf1ic1k1" path="res://Menu/menu.tscn" id="2_mgdw5"]
+[ext_resource type="Shader" uid="uid://ceif77f445ibk" path="res://Menu/Systeme_Sol.gdshader" id="2_peg0k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyv2x"]
+shader = ExtResource("2_peg0k")
+shader_parameter/vertical_sections = 21
+shader_parameter/star_size = 0.02
+shader_parameter/star_falloff = 4.0
+shader_parameter/margin = 0.05
+
+[sub_resource type="Sky" id="Sky_tkdc1"]
+sky_material = SubResource("ShaderMaterial_gyv2x")
+
+[sub_resource type="Environment" id="Environment_ul64e"]
+background_mode = 2
+sky = SubResource("Sky_tkdc1")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.05
+reflected_light_source = 1
+
+[node name="Systeme_Sol" type="Node3D"]
+script = ExtResource("1_tkdc1")
+
+[node name="Menu" parent="." instance=ExtResource("2_mgdw5")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ul64e")

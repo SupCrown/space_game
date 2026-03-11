@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bdioihdc8ksxe"]
+
+[ext_resource type="Script" uid="uid://dndlehvjgrfrf" path="res://Jeu/jeu.gd" id="1_f0c04"]
+[ext_resource type="Texture2D" uid="uid://bqerqy12hwufi" path="res://Ressources/BackGrounds/earth_1.png" id="1_vsjop"]
+[ext_resource type="Texture2D" uid="uid://dlyl75you4dd8" path="res://Ressources/BackGrounds/earth_2.png" id="2_f0c04"]
+[ext_resource type="Texture2D" uid="uid://dwnwjlxu6v818" path="res://Ressources/BackGrounds/earth_3.png" id="3_lm02w"]
+[ext_resource type="PackedScene" uid="uid://cvhdjr8k6k316" path="res://Vaisseau/vaisseau.tscn" id="5_ul6wy"]
+[ext_resource type="PackedScene" uid="uid://biibdkvca6uu1" path="res://Asteroids/asteroids.tscn" id="6_tea16"]
+[ext_resource type="PackedScene" uid="uid://cuddj6nfy53yh" path="res://HUD/hud.tscn" id="7_tea16"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hw12f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vsjop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_f0c04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lm02w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0c04"]
+size = Vector2(800, 600)
+
+[node name="jeu" type="Node2D" unique_id=1899592116]
+script = ExtResource("1_f0c04")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=686920479]
+position = Vector2(0.1515007, 1.4305115e-06)
+scale = Vector2(0.56818175, 0.56818175)
+sprite_frames = SubResource("SpriteFrames_hw12f")
+autoplay = "default"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=558306720]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1809806296]
+collision_layer = 0
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=461707426]
+shape = SubResource("RectangleShape2D_f0c04")
+
+[node name="Vaisseau" parent="." unique_id=2017710196 instance=ExtResource("5_ul6wy")]
+position = Vector2(0, 68.27)
+inertia = 15.0
+
+[node name="asteroids" parent="." unique_id=1391368840 instance=ExtResource("6_tea16")]
+spriteTexture = null
+spriteScale = null
+widthColissionShape = null
+heightColissionShape = null
+speed = null
+
+[node name="HUD" parent="." unique_id=1424467486 instance=ExtResource("7_tea16")]
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

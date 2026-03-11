@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bc2ioqf0sxfhs"]
+
+[ext_resource type="Script" uid="uid://bo3ituawg12wy" path="res://Menu/planete.gd" id="1_pqxyy"]
+[ext_resource type="Material" uid="uid://d3tv7sdxns3ad" path="res://Ressources/Ion.tres" id="2_1w58q"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yfdo2"]
+lightmap_size_hint = Vector2i(17, 9)
+material = ExtResource("2_1w58q")
+
+[node name="Planete" type="Node3D" unique_id=1636778666]
+script = ExtResource("1_pqxyy")
+
+[node name="Planete" type="MeshInstance3D" parent="." unique_id=1561501268]
+mesh = SubResource("SphereMesh_yfdo2")
+
+[node name="Lumiere" type="OmniLight3D" parent="Planete" unique_id=657225457]
+omni_range = 4096.0

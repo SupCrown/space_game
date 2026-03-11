@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://caywn80odykos"]
+
+[ext_resource type="Theme" uid="uid://bjwi0nhwoko7c" path="res://Ressources/Menu/main_theme.tres" id="1_5v8ap"]
+
+[sub_resource type="GDScript" id="GDScript_5v8ap"]
+script/source = "extends MarginContainer
+
+func _ready() -> void:
+	var menu : Menu = get_parent().find_child(\"Menu\")
+	tree_exited.connect(menu.show)
+
+func _on_back_to_game_pressed() -> void:
+	queue_free()
+"
+
+[node name="Options" type="MarginContainer" unique_id=1860764102]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = SubResource("GDScript_5v8ap")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=80784879]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_5v8ap")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=243507080]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer" unique_id=1185963490]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Paramètres graphiques"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=475791119]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer/MarginContainer2" unique_id=408369330]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Parmètres audios"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer" unique_id=32132355]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="VBoxContainer/MarginContainer3" unique_id=2060970898]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Contrôles"
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer" unique_id=598855068]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Button5" type="Button" parent="VBoxContainer/MarginContainer5" unique_id=1400043938]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Retour au jeu"
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer5/Button5" to="." method="_on_back_to_game_pressed"]
