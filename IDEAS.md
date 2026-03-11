@@ -1,4 +1,4 @@
-# GEOMTRY WARS GALAXY
+# GEOMTRY WARS GALAXY
 
 ## Idées à développer
 
