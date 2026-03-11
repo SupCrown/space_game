@@ -47,7 +47,7 @@ Le vaisseau a un cabrurant limité (temps de vie max). Pour pouvoir continuer à
  - Screamer (konami code / mini jeu ) 
  - ...
 
-### Collectibles
+### Collectibles
 
 Des Collectibles se promènes dans les différents modes de jeu. Un inventaire est présent dans le menu pour les regrouper.
 
