@@ -8,9 +8,11 @@
 
 Au lieu d'être dans l'espace avec un vaisseau. À la sélectione du niveau petite animation qui nous fait atérir sur la planète et les énemis arrivent ensuite.
 
+Inertie à la course.
+
 Le carburant serait de la téquila.
 
-#### Champ de vision  / mode de jeu bonus à la récupération de suffisamment de collectibles
+#### Champ de vision / mode de jeu bonus à la récupération de suffisamment de collectibles
 
 Dans le style du shoot them all et d'un point A à un point B dans un vaiseau, le seul champ de vision proposée au joueur est celui d'une flashlight qu'il tient (elle suit sa visée). (Il peut la lancer mais ne vois plus son joueur à moins d'être dans la zone illuminé à l'atterisssage de la flashlight.)
 
@@ -23,6 +25,8 @@ Plus :
 ### Carburant (classique / asteroïd)
 
 Le vaisseau a un cabrurant limité (temps de vie max). Pour pouvoir continuer à jouer, il faut récupérer des jerricans qui donne un temps e vie suplémentaire.
+
+Moins on a de carburant, plus la musique va vite et un effet rouge apparaît autour de l'écran.
 
 ### Vies
 
