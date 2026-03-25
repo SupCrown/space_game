@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bmvswmly013u7"]
+
+[ext_resource type="Script" uid="uid://bwi5ecpkishlc" path="res://Bonus/bonus.gd" id="1_pxp5e"]
+[ext_resource type="Texture2D" uid="uid://24icwe8651se" path="res://Ressources/Bonus/box power up.png" id="2_ebpus"]
+[ext_resource type="Texture2D" uid="uid://dqdvog56t4oow" path="res://Ressources/Bonus/explosion.png" id="2_pxp5e"]
+[ext_resource type="Texture2D" uid="uid://cal170ka2mf3l" path="res://Ressources/Bonus/box power up clignote.png" id="3_i1168"]
+[ext_resource type="Texture2D" uid="uid://fkqayikgnal7" path="res://Ressources/Bonus/box power up clignote jaune.png" id="4_i1168"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebpus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ebpus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i1168")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i1168")
+}],
+"loop": true,
+"name": &"bonus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pxp5e")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1168"]
+size = Vector2(30, 15.5)
+
+[node name="bonus" type="RigidBody2D" unique_id=373847533]
+script = ExtResource("1_pxp5e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=937546741]
+position = Vector2(-0.9999981, 2.000002)
+scale = Vector2(0.021181878, 0.01942988)
+sprite_frames = SubResource("SpriteFrames_ebpus")
+animation = &"bonus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=558063016]
+shape = SubResource("RectangleShape2D_i1168")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

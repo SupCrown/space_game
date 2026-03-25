@@ -2,6 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bjwi0nhwoko7c" path="res://Ressources/Menu/main_theme.tres" id="1_p4kmv"]
 [ext_resource type="Script" uid="uid://brh3apxki1ius" path="res://MenuOption/option_menu.gd" id="2_x2yo5"]
+[ext_resource type="Texture2D" uid="uid://c716ys3bwmk2x" path="res://Ressources/Vaisseau/perseus_1.png" id="3_o5rlj"]
+[ext_resource type="Texture2D" uid="uid://b1bs0cy16xovm" path="res://Ressources/Laser/laz_3.png" id="4_1ablm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7lu8k"]
 font_size = 24
@@ -66,25 +68,33 @@ size_flags_vertical = 4
 
 [node name="SonOption" type="Button" parent="PanelGlobal/PanelOption" unique_id=2079388395]
 layout_mode = 0
-offset_left = 231.0
-offset_right = 314.0
-offset_bottom = 60.0
+offset_left = 156.0
+offset_top = 1.0
+offset_right = 239.0
+offset_bottom = 61.0
 size_flags_horizontal = 0
 text = "Audio"
 
 [node name="VideoOption" type="Button" parent="PanelGlobal/PanelOption" unique_id=1138814280]
 layout_mode = 0
-offset_left = 322.0
-offset_right = 408.0
+offset_left = 246.0
+offset_right = 332.0
 offset_bottom = 61.0
 text = "Video"
 
 [node name="ControleOption" type="Button" parent="PanelGlobal/PanelOption" unique_id=783820424]
 layout_mode = 0
-offset_left = 416.0
-offset_right = 548.0
-offset_bottom = 64.0
+offset_left = 342.0
+offset_right = 474.0
+offset_bottom = 61.0
 text = "Contrôle"
+
+[node name="JoueurOption" type="Button" parent="PanelGlobal/PanelOption" unique_id=703307491]
+layout_mode = 0
+offset_left = 487.0
+offset_right = 619.0
+offset_bottom = 60.0
+text = "Joueur"
 
 [node name="SaveButton" type="Button" parent="PanelGlobal" unique_id=488930354]
 layout_mode = 0
@@ -105,6 +115,8 @@ offset_left = -274.0
 offset_top = -418.0
 offset_right = 280.0
 offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = SubResource("Theme_x2yo5")
 
 [node name="MenuControle" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1477174126]
@@ -171,9 +183,74 @@ size_flags_vertical = 0
 text = "Volume :
 "
 
+[node name="MenuJoueurVaisseau" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1115056118]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.024
+anchor_bottom = 0.024
+offset_left = 116.0
+offset_top = 71.048004
+offset_right = 286.0
+offset_bottom = 258.048
+
+[node name="LabelVaisseau" type="Label" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau" unique_id=217832499]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Vaisseau : "
+
+[node name="Sprite2DVaisseauChoix" type="Sprite2D" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau" unique_id=1700142610]
+position = Vector2(85.00001, 103.99999)
+scale = Vector2(0.39000008, 0.33196723)
+texture = ExtResource("3_o5rlj")
+
+[node name="ChoixGaucheVaisseau" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau" unique_id=1928615592]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "<"
+
+[node name="ChoixDroiteVaisseau" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau" unique_id=515190678]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = ">"
+
+[node name="MenuJoueurLazer" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=960998081]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 335.0
+offset_top = 81.0
+offset_right = 439.0
+offset_bottom = 268.0
+
+[node name="LabelLazer" type="Label" parent="PanelGlobal/PanelContener/MenuJoueurLazer" unique_id=1170890158]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Lazer : "
+
+[node name="Sprite2DLazerChoix" type="Sprite2D" parent="PanelGlobal/PanelContener/MenuJoueurLazer" unique_id=515427513]
+position = Vector2(51, 92)
+texture = ExtResource("4_1ablm")
+
+[node name="ChoixGaucheLazer" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurLazer" unique_id=374826694]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "<"
+
+[node name="ChoixDroiteLazer" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurLazer" unique_id=560142509]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = ">"
+
 [connection signal="pressed" from="PanelGlobal/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelOption/SonOption" to="." method="_on_AudioButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelOption/VideoOption" to="." method="_on_VideoButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelOption/ControleOption" to="." method="_on_ControlButton_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelOption/JoueurOption" to="." method="_on_JoueurButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/SaveButton" to="." method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/SpeedControleKey" to="." method="_on_speed_controle_pressed"]

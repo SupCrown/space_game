@@ -1,8 +1,11 @@
-res://Asteroids/asteroids.gd
-res://Asteroids/asteroids.tscn
+res://Jeu/jeu.tscn
 res://Ressources/Ion.tres
 res://Ressources/Menu/main_theme.tres
 res://Menu/Systeme_Sol.gdshader
-res://Jeu/jeu.tscn
-res://HUD/hud.tscn
-res://Vaisseau/vaisseau.tscn
+res://Bonus/bonus.gd
+res://bonus_config.gd
+res://Laser/laser.gd
+res://Vaisseau/vaisseau.gd
+res://Bonus/bonus.tscn
+res://MenuOption/option_menu.tscn
+res://MenuOption/option_menu.gd

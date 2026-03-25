@@ -57,6 +57,13 @@ tirer={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Laser"
+2d_physics/layer_2="Bonus"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="SpaceShip"
+
 [physics]
 
 2d/default_gravity=0.0

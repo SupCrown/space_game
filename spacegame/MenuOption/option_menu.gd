@@ -23,6 +23,7 @@ func apply_settings_to_ui() -> void:
 	$%MenuAudio.visible = true
 	$%MenuVideo.visible = false
 	$%MenuControle.visible = false
+	
 
 func read_ui_to_settings() -> void:
 	Settings.volume = float(volume_slider.value)
@@ -51,16 +52,29 @@ func _on_AudioButton_pressed() -> void:
 	$%MenuAudio.visible = true
 	$%MenuVideo.visible = false
 	$%MenuControle.visible = false
+	$%MenuJoueurVaisseau.visible = false
+	$%MenuJoueurLazer.visible = false
 
 func _on_VideoButton_pressed() -> void:
 	$%MenuAudio.visible = false
 	$%MenuVideo.visible = true
 	$%MenuControle.visible = false
+	$%MenuJoueurVaisseau.visible = false
+	$%MenuJoueurLazer.visible = false
 
 func _on_ControlButton_pressed() -> void:
 	$%MenuAudio.visible = false
 	$%MenuVideo.visible = false
 	$%MenuControle.visible = true
+	$%MenuJoueurVaisseau.visible = false
+	$%MenuJoueurLazer.visible = false
+
+func _on_JoueurButton_pressed() -> void:
+	$%MenuAudio.visible = false
+	$%MenuVideo.visible = false
+	$%MenuControle.visible = false
+	$%MenuJoueurVaisseau.visible = true
+	$%MenuJoueurLazer.visible = true
 
 # ----- Boutons globaux -----
 func _on_SaveButton_pressed() -> void:
