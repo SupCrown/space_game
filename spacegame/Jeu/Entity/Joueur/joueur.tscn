@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c86m1mfere6k5"]
+
+[ext_resource type="Script" uid="uid://b01mra6bq4i2a" path="res://Jeu/Entity/Joueur/joueur.gd" id="1_vqn8x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0gjat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bs4f"]
+
+[node name="Joueur" type="RigidBody2D" unique_id=249877270]
+collision_mask = 2
+inertia = 15.0
+script = ExtResource("1_vqn8x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=645963940]
+sprite_frames = SubResource("SpriteFrames_0gjat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1224014258]
+shape = SubResource("RectangleShape2D_6bs4f")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=2139360730]

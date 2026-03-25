@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://b3eimeuyq4uik"]
+
+[ext_resource type="Theme" uid="uid://bjwi0nhwoko7c" path="res://Ressources/Menu/main_theme.tres" id="1_p4kmv"]
+[ext_resource type="Script" uid="uid://brh3apxki1ius" path="res://Jeu/MenuOption/option_menu.gd" id="2_x2yo5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7lu8k"]
+font_size = 24
+
+[sub_resource type="Theme" id="Theme_x2yo5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yx0a"]
+bg_color = Color(0.28118682, 0.2811869, 0.28118676, 1)
+
+[sub_resource type="Theme" id="Theme_4k87v"]
+OptionButton/styles/normal = SubResource("StyleBoxFlat_0yx0a")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6vu8u"]
+color = Color(1, 1, 1, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_v7m4l"]
+color = Color(0, 0.6313726, 0, 1)
+thickness = 3
+
+[node name="option_menu" type="MarginContainer" unique_id=948017260]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p4kmv")
+script = ExtResource("2_x2yo5")
+
+[node name="PanelGlobal" type="Panel" parent="." unique_id=1133304832]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="PanelGlobal" unique_id=835177521]
+layout_mode = 0
+offset_left = 705.0
+offset_top = 23.0
+offset_right = 786.0
+offset_bottom = 50.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Retour"
+
+[node name="OptionTitle" type="Label" parent="PanelGlobal" unique_id=2048631185]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 21.0
+offset_right = 588.0
+offset_bottom = 49.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Paramètres Généreaux"
+label_settings = SubResource("LabelSettings_7lu8k")
+
+[node name="PanelOption" type="TabBar" parent="PanelGlobal" unique_id=1490399011]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 108.0
+offset_right = 740.0
+offset_bottom = 612.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SonOption" type="Button" parent="PanelGlobal/PanelOption" unique_id=2079388395]
+layout_mode = 0
+offset_left = 231.0
+offset_right = 314.0
+offset_bottom = 60.0
+size_flags_horizontal = 0
+text = "Audio"
+
+[node name="VideoOption" type="Button" parent="PanelGlobal/PanelOption" unique_id=1138814280]
+layout_mode = 0
+offset_left = 322.0
+offset_right = 408.0
+offset_bottom = 61.0
+text = "Video"
+
+[node name="ControleOption" type="Button" parent="PanelGlobal/PanelOption" unique_id=783820424]
+layout_mode = 0
+offset_left = 416.0
+offset_right = 548.0
+offset_bottom = 64.0
+text = "Contrôle"
+
+[node name="SaveButton" type="Button" parent="PanelGlobal" unique_id=488930354]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 22.0
+offset_right = 162.0
+offset_bottom = 49.0
+text = "Sauvegarder"
+
+[node name="PanelContener" type="Panel" parent="PanelGlobal" unique_id=1423558549]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -274.0
+offset_top = -418.0
+offset_right = 280.0
+offset_bottom = -45.0
+theme = SubResource("Theme_x2yo5")
+
+[node name="MenuControle" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1477174126]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 39.0
+offset_top = 109.0
+offset_right = 507.0
+offset_bottom = 151.0
+
+[node name="SpeedControle" type="Label" parent="PanelGlobal/PanelContener/MenuControle" unique_id=1357411974]
+layout_mode = 2
+text = "Accèlerer :"
+
+[node name="SpeedControleKey" type="Button" parent="PanelGlobal/PanelContener/MenuControle" unique_id=1485324137]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="MenuVideo" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1047036187]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 41.0
+offset_top = 90.0
+offset_right = 514.0
+offset_bottom = 152.0
+
+[node name="resolutionOption" type="Label" parent="PanelGlobal/PanelContener/MenuVideo" unique_id=1065825095]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Résolution:"
+
+[node name="ChoixOption" type="OptionButton" parent="PanelGlobal/PanelContener/MenuVideo" unique_id=583853413]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = SubResource("Theme_4k87v")
+item_count = 1
+popup/item_0/text = "Plein ecran"
+popup/item_0/id = 0
+
+[node name="MenuAudio" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1578058121]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 103.0
+offset_right = 488.0
+offset_bottom = 156.0
+
+[node name="VolumeSlider" type="HSlider" parent="PanelGlobal/PanelContener/MenuAudio" unique_id=1801113384]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxLine_6vu8u")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_v7m4l")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_v7m4l")
+tick_count = 21
+
+[node name="volumeOption" type="Label" parent="PanelGlobal/PanelContener/MenuAudio" unique_id=394691952]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Volume :
+"
+
+[connection signal="pressed" from="PanelGlobal/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelOption/SonOption" to="." method="_on_AudioButton_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelOption/VideoOption" to="." method="_on_VideoButton_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelOption/ControleOption" to="." method="_on_ControlButton_pressed"]
+[connection signal="pressed" from="PanelGlobal/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/SpeedControleKey" to="." method="_on_speed_controle_pressed"]

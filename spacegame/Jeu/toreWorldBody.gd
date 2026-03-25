@@ -1,5 +1,5 @@
 extends RigidBody2D
-class_name toreWorldBody
+class_name ToreWorldBody
 
 var outOfScreen = false
 var rigidBodyWorldSize : Vector2

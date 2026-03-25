@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://biibdkvca6uu1"]
+
+[ext_resource type="Script" uid="uid://b2fv4vuvdlk4o" path="res://Jeu/Entity/Ennemi/Asteroids/asteroids.gd" id="1_53bie"]
+[ext_resource type="Texture2D" uid="uid://cv27nhpurhb8n" path="res://Ressources/Asteroids/trash_4.png" id="2_404kr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53bie"]
+size = Vector2(18, 11)
+
+[node name="asteroids" type="RigidBody2D" unique_id=1391368840]
+collision_layer = 2
+inertia = 1.79
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp_mode = 1
+angular_damp_mode = 1
+angular_damp = 10.0
+script = ExtResource("1_53bie")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=916033055]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_404kr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=862520479]
+shape = SubResource("RectangleShape2D_53bie")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

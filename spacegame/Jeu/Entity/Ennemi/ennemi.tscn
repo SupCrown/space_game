@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dif8838d2lmle"]
+
+[ext_resource type="Script" uid="uid://dmpv8qn1n7ken" path="res://Jeu/Entity/Ennemi/ennemi.gd" id="1_tlxuo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3d22k"]
+
+[node name="Node2D" type="RigidBody2D" unique_id=1363673767]
+collision_layer = 2
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp_mode = 1
+angular_damp_mode = 1
+angular_damp = 10.0
+script = ExtResource("1_tlxuo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=213061717]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1744432657]
+shape = SubResource("RectangleShape2D_3d22k")
