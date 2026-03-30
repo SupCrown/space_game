@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://0qi1x4xwwm2k"]
+
+[ext_resource type="Texture2D" uid="uid://b2wc20hkcy2xf" path="res://Ressources/Vaisseau/spaceship.png" id="1_rqwoi"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rqwoi")
+}],
+"loop": true,
+"name": &"mouvement",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rqwoi")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}]

@@ -1,26 +1,7 @@
 [gd_scene format=3 uid="uid://b35kjtpl5rthb"]
 
-[ext_resource type="Texture2D" uid="uid://cfuht4mile65t" path="res://Ressources/Laser/laz_1.png" id="1_8uxad"]
 [ext_resource type="Script" uid="uid://ba8i52sjrc7vp" path="res://Laser/laser.gd" id="1_lt6yg"]
-[ext_resource type="Texture2D" uid="uid://cyw34gcifqw0n" path="res://Ressources/Laser/laz_2.png" id="2_lt6yg"]
-[ext_resource type="Texture2D" uid="uid://b1bs0cy16xovm" path="res://Ressources/Laser/laz_3.png" id="3_ughg4"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_s3hdr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_8uxad")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_lt6yg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_ughg4")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://b0be0brucbpum" path="res://Ressources/Laser/lazer_sprite_frames_2_1.tres" id="2_b3m3o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lt6yg"]
 radius = 1.8
@@ -33,8 +14,11 @@ max_contacts_reported = 1
 script = ExtResource("1_lt6yg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=853685295]
-scale = Vector2(0.1, 0.1)
-sprite_frames = SubResource("SpriteFrames_s3hdr")
+position = Vector2(1.4305115e-06, -4.7683716e-07)
+rotation = 3.1328638
+scale = Vector2(0.008293766, 0.01443001)
+sprite_frames = ExtResource("2_b3m3o")
+animation = &"lazer_type_3"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1480216703]

@@ -1,0 +1,27 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://ccgdbfed6gubp"]
+
+[ext_resource type="Texture2D" uid="uid://drtgcu1o8alla" path="res://Ressources/Vaisseau/perseus_2.png" id="1_clmj0"]
+[ext_resource type="Texture2D" uid="uid://c6kn85q5hpqi0" path="res://Ressources/Vaisseau/perseus_3.png" id="2_bnjrq"]
+[ext_resource type="Texture2D" uid="uid://c716ys3bwmk2x" path="res://Ressources/Vaisseau/perseus_1.png" id="3_jrjfr"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_clmj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bnjrq")
+}],
+"loop": true,
+"name": &"mouvement",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jrjfr")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}]

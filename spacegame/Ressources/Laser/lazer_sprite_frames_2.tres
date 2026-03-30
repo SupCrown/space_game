@@ -1,0 +1,31 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b0be0brucbpum"]
+
+[ext_resource type="Texture2D" uid="uid://dwabrtt4l8nkp" path="res://Ressources/Laser/lazer_type_3.jpeg" id="4_elqt4"]
+[ext_resource type="Texture2D" uid="uid://kogw1vkvcm6y" path="res://Ressources/Laser/lazer_type_2.png" id="5_oublu"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_oublu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_elqt4")
+}],
+"loop": true,
+"name": &"lazer_type_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_oublu")
+}],
+"loop": true,
+"name": &"lazer_type_3",
+"speed": 5.0
+}]

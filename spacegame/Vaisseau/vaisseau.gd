@@ -5,6 +5,7 @@ var laser_scene = preload("res://Laser/laser.tscn")
 
 @export var base_speed: float = 300.0
 @export var shoot_cooldown: float = 0.2
+@export var normal_shoot_cooldown: float = 0.2
 @export var slow_shoot_cooldown: float = 0.6
 @export var crazy_rotation_force: float = 250.0
 @export var rotation_torque: float = 100.0
@@ -33,9 +34,32 @@ var control_map := {
 	"gauche": "gauche"
 }
 
+const SHIP_SKINS := [
+	{ "frames": "res://Ressources/Vaisseau/ship_sprite_frames_1.tres", "scale": Vector2(0.2, 0.2) },
+	{ "frames": "res://Ressources/Vaisseau/ship_sprite_frames_2.tres", "scale": Vector2(0.12, 0.12) },
+	{ "frames": "res://Ressources/Vaisseau/ship_sprite_frames_3.tres", "scale": Vector2(0.1, 0.1) }
+]
+
 func _ready() -> void:
 	add_to_group("player")
 	current_speed = base_speed
+	apply_ship_skin()
+
+func apply_ship_skin() -> void:
+	if Settings.ship_skin_index < 0 or Settings.ship_skin_index >= SHIP_SKINS.size():
+		push_error("Index vaisseau invalide")
+		return
+
+	var skin = SHIP_SKINS[Settings.ship_skin_index]
+	var frames: SpriteFrames = load(skin["frames"])
+
+	if frames == null:
+		push_error("Impossible de charger frames : " + skin["frames"])
+		return
+
+	$AnimatedSprite2D.sprite_frames = frames
+	$AnimatedSprite2D.scale = skin["scale"]
+	$AnimatedSprite2D.play("stop")
 
 func _process(delta: float) -> void:
 	handle_shoot()
@@ -83,9 +107,9 @@ func update_animation() -> void:
 	var left_pressed = Input.is_action_pressed(get_action_for("gauche"))
 
 	if accel_pressed or right_pressed or left_pressed or crazy_rotation:
-		$Sprite2D.play("mouvement")
+		$AnimatedSprite2D.play("mouvement")
 	else:
-		$Sprite2D.play("stop")
+		$AnimatedSprite2D.play("stop")
 
 func shoot() -> void:
 	spawn_laser($LaserSpawnCenter)
@@ -223,7 +247,7 @@ func set_slow_fire(duration: float) -> void:
 	await get_tree().create_timer(duration).timeout
 
 	if my_id == fire_rate_bonus_id:
-		shoot_cooldown = 0.2
+		shoot_cooldown = normal_shoot_cooldown
 		print("MALUS TERMINE : tir normal")
 
 func set_random_controls(duration: float) -> void:

@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bvkl8pdfd3ys1"]
+
+[ext_resource type="Texture2D" uid="uid://cfuht4mile65t" path="res://Ressources/Laser/laz_1.png" id="1_agyl1"]
+[ext_resource type="Texture2D" uid="uid://cyw34gcifqw0n" path="res://Ressources/Laser/laz_2.png" id="2_4y37c"]
+[ext_resource type="Texture2D" uid="uid://b1bs0cy16xovm" path="res://Ressources/Laser/laz_3.png" id="3_fgyh4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_agyl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4y37c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fgyh4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

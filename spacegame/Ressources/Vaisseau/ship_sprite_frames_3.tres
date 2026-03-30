@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://btgq407cdtf0a"]
+
+[ext_resource type="Texture2D" uid="uid://dvtiebraegya3" path="res://Ressources/Vaisseau/ultraship.png" id="1_dabhy"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dabhy")
+}],
+"loop": true,
+"name": &"mouvement",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dabhy")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}]

@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://bjwi0nhwoko7c" path="res://Ressources/Menu/main_theme.tres" id="1_p4kmv"]
 [ext_resource type="Script" uid="uid://brh3apxki1ius" path="res://MenuOption/option_menu.gd" id="2_x2yo5"]
 [ext_resource type="Texture2D" uid="uid://c716ys3bwmk2x" path="res://Ressources/Vaisseau/perseus_1.png" id="3_o5rlj"]
-[ext_resource type="Texture2D" uid="uid://b1bs0cy16xovm" path="res://Ressources/Laser/laz_3.png" id="4_1ablm"]
+[ext_resource type="Texture2D" uid="uid://kogw1vkvcm6y" path="res://Ressources/Laser/lazer_type_2.png" id="4_o5rlj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7lu8k"]
 font_size = 24
@@ -121,6 +121,7 @@ theme = SubResource("Theme_x2yo5")
 
 [node name="MenuControle" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1477174126]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 39.0
 offset_top = 109.0
@@ -219,7 +220,6 @@ text = ">"
 
 [node name="MenuJoueurLazer" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=960998081]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_left = 335.0
 offset_top = 81.0
@@ -233,7 +233,7 @@ text = "Lazer : "
 
 [node name="Sprite2DLazerChoix" type="Sprite2D" parent="PanelGlobal/PanelContener/MenuJoueurLazer" unique_id=515427513]
 position = Vector2(51, 92)
-texture = ExtResource("4_1ablm")
+texture = ExtResource("4_o5rlj")
 
 [node name="ChoixGaucheLazer" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurLazer" unique_id=374826694]
 layout_mode = 2
@@ -254,3 +254,8 @@ text = ">"
 [connection signal="pressed" from="PanelGlobal/PanelOption/JoueurOption" to="." method="_on_JoueurButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/SaveButton" to="." method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/SpeedControleKey" to="." method="_on_speed_controle_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurVaisseau/ChoixGaucheVaisseau" to="." method="_on_ship_left_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurVaisseau/ChoixGaucheVaisseau" to="." method="_on_ChoixGaucheVais_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurVaisseau/ChoixDroiteVaisseau" to="." method="_on_ChoixDroiteVaiss_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurLazer/ChoixGaucheLazer" to="." method="_on_ChoixGaucheLaz_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurLazer/ChoixDroiteLazer" to="." method="_on_ChoixDroiteLazer_pressed"]
