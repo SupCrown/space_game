@@ -13,14 +13,14 @@ const BACK_SCENE := "res://Menu/Systeme_Sol.tscn"
 
 const SHIP_SKINS := [
 	{ "path": "res://Ressources/Vaisseau/perseus_1.png", "scale": Vector2(0.3, 0.3) },
-	{ "path": "res://Ressources/Vaisseau/spaceship.png", "scale": Vector2(0.12, 0.12) },
+	{ "path": "res://Ressources/Vaisseau/spaceship.png", "scale": Vector2(0.2, 0.2) },
 	{ "path": "res://Ressources/Vaisseau/ultraship.png", "scale": Vector2(0.3, 0.3) }
 ]
 
 const LASER_SKINS := [
 	{ "path": "res://Ressources/Laser/laz_3.png", "scale": Vector2(1.0, 1.0) },
-	{ "path": "res://Ressources/Laser/lazer_type_2.png", "scale": Vector2(0.1, 0.2) },
-	{ "path": "res://Ressources/Laser/lazer_type_3.jpeg", "scale": Vector2(0.2, 0.4) }
+	{ "path": "res://Ressources/Laser/lazer_type_2.png", "scale": Vector2(0.1, 0.1) },
+	{ "path": "res://Ressources/Laser/lazer_type_3.png", "scale": Vector2(0.4, 0.4) }
 ]
 
 func _ready() -> void:

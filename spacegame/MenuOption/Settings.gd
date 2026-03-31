@@ -9,6 +9,9 @@ var speed_key: int = KEY_SPACE
 var ship_skin_index: int = 0
 var laser_skin_index: int = 0
 
+func _ready() -> void:
+	load_from_disk()
+
 func appliquer_touche_acceleration() -> void:
 	var nouvel_event = InputEventKey.new()
 	nouvel_event.keycode = speed_key

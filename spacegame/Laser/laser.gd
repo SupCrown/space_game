@@ -11,7 +11,7 @@ var is_powerful := false
 const LASER_SKINS := [
 	{ "frames": "res://Ressources/Laser/lazer_sprite_frames_1.tres", "scale": Vector2(0.1, 0.1), "anim": "default" },
 	{ "frames": "res://Ressources/Laser/lazer_sprite_frames_2.tres", "scale": Vector2(0.1, 0.1), "anim": "default" },
-	{ "frames": "res://Ressources/Laser/lazer_sprite_frames_3.tres", "scale": Vector2(0.01, 0.01), "anim": "default" }
+	{ "frames": "res://Ressources/Laser/lazer_sprite_frames_3.tres", "scale": Vector2(0.1, 0.1), "anim": "default" }
 ]
 
 func _ready() -> void:

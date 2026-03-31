@@ -36,8 +36,8 @@ var control_map := {
 
 const SHIP_SKINS := [
 	{ "frames": "res://Ressources/Vaisseau/ship_sprite_frames_1.tres", "scale": Vector2(0.2, 0.2) },
-	{ "frames": "res://Ressources/Vaisseau/ship_sprite_frames_2.tres", "scale": Vector2(0.12, 0.12) },
-	{ "frames": "res://Ressources/Vaisseau/ship_sprite_frames_3.tres", "scale": Vector2(0.1, 0.1) }
+	{ "frames": "res://Ressources/Vaisseau/ship_sprite_frames_2.tres", "scale": Vector2(0.15, 0.15) },
+	{ "frames": "res://Ressources/Vaisseau/ship_sprite_frames_3.tres", "scale": Vector2(0.15, 0.15) }
 ]
 
 func _ready() -> void:
@@ -53,9 +53,15 @@ func apply_ship_skin() -> void:
 	var skin = SHIP_SKINS[Settings.ship_skin_index]
 	var frames: SpriteFrames = load(skin["frames"])
 
+	print("Ship index :", Settings.ship_skin_index)
+	print("Frames path :", skin["frames"])
+	print("Frames loaded :", frames)
+
 	if frames == null:
 		push_error("Impossible de charger frames : " + skin["frames"])
 		return
+
+	print("Animations dispo :", frames.get_animation_names())
 
 	$AnimatedSprite2D.sprite_frames = frames
 	$AnimatedSprite2D.scale = skin["scale"]

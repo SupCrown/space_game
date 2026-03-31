@@ -1,12 +1,13 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://cxv40enfttby2"]
 
+[ext_resource type="Texture2D" uid="uid://kdr0eiudq5gl" path="res://Ressources/Laser/lazer_type_3.png" id="1_pblar"]
 [ext_resource type="Texture2D" uid="uid://dwabrtt4l8nkp" path="res://Ressources/Laser/lazer_type_3.jpeg" id="4_5k81y"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_5k81y")
+"texture": ExtResource("1_pblar")
 }],
 "loop": true,
 "name": &"default",

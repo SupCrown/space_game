@@ -34,16 +34,14 @@ size = Vector2(800, 600)
 script = ExtResource("2_7nf2q")
 enable_slow_speed = false
 enable_fast_speed = false
-enable_triple_laser = false
 enable_powerful_laser = false
 enable_auto_fire = false
 enable_slow_fire = false
 enable_random_controls = false
 enable_crazy_rotation = false
 enable_slow_motion = false
-asteroid_spawn_count = 10
+enable_asteroid_spawn = false
 enable_super_6 = false
-max_bonus_on_screen = 42
 metadata/_custom_type_script = "uid://dkp0ej2s211ew"
 
 [node name="jeu" type="Node2D" unique_id=1899592116]
