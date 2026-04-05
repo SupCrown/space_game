@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bdioihdc8ksxe"]
+
+[ext_resource type="Script" uid="uid://dndlehvjgrfrf" path="res://Jeu/jeu.gd" id="1_ul6wy"]
+[ext_resource type="Texture2D" uid="uid://bqerqy12hwufi" path="res://Ressources/Backgrounds/earth_1.png" id="1_vsjop"]
+[ext_resource type="Texture2D" uid="uid://dlyl75you4dd8" path="res://Ressources/Backgrounds/earth_2.png" id="2_f0c04"]
+[ext_resource type="Texture2D" uid="uid://dwnwjlxu6v818" path="res://Ressources/Backgrounds/earth_3.png" id="3_lm02w"]
+[ext_resource type="AudioStream" uid="uid://dbjtdnwwbmrbv" path="res://Ressources/Musiques/Asteriods.mp3" id="6_ul6wy"]
+[ext_resource type="PackedScene" uid="uid://cuddj6nfy53yh" path="res://Jeu/HUD/hud.tscn" id="7_tea16"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hw12f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vsjop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_f0c04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lm02w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0c04"]
+size = Vector2(800, 600)
+
+[node name="Jeu" type="Node2D" unique_id=1899592116]
+script = ExtResource("1_ul6wy")
+
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=686920479]
+position = Vector2(0.1515007, 1.4305115e-06)
+scale = Vector2(0.56818175, 0.56818175)
+sprite_frames = SubResource("SpriteFrames_hw12f")
+autoplay = "default"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=558306720]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1809806296]
+collision_layer = 0
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=461707426]
+shape = SubResource("RectangleShape2D_f0c04")
+
+[node name="HUD" parent="." unique_id=1424467486 instance=ExtResource("7_tea16")]
+z_index = 4096
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=27708738]
+stream = ExtResource("6_ul6wy")
+volume_db = 0.7
+autoplay = true
+parameters/looping = true
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

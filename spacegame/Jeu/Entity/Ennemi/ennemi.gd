@@ -44,6 +44,6 @@ func cloneDeep() -> Ennemi :
 	
 	return ennemi
 
-func body_entered(body: Node) -> void:
+func _on_body_entered(body: Node) -> void :
 	if body is Joueur :
-		body.kill()
+		body.on_hit_by_asteroid()

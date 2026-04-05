@@ -7,7 +7,15 @@ var ennemi : Ennemi = Ennemi.new()
 var divisions : Array[Ennemi] = []
 var ennemi_cooldown : float = -1.0
 
+@export var min_music_pitch : float = 1.0
+@export var max_music_pitch : float = 1.45
+
+@onready var hud : HUD = $HUD
+@onready var joueur : Joueur
+@onready var music_player : AudioStreamPlayer = $MusicPlayer
+
 var rng = RandomNumberGenerator.new()
+
 func _process(delta: float) -> void:
 	ennemi_cooldown -= delta
 	if (ennemi_cooldown < 0.0) :
@@ -18,8 +26,24 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("pause") : 
 		$HUD.display_pause_menu()
 		
+	if joueur == null or not is_instance_valid(joueur):
+		return
+
+	var fuel_percent := joueur.get_fuel_percent()
+	hud.update_fuel(fuel_percent)
+
+	if music_player != null:
+		music_player.pitch_scale = lerp(max_music_pitch, min_music_pitch, fuel_percent)
+		
 func _ready():
 	generer_jeu()
+	if joueur != null:
+		joueur.hit_by_asteroid.connect(_on_vaisseau_hit_by_asteroid)
+
+	if music_player != null and music_player.stream != null and not music_player.playing:
+		music_player.play()
+
+	print("[HUD TEST] H = impact asteroide | J = carburant bas | K = plein | L = vide")
 
 func generer_jeu():
 	var config = ConfigFile.new()
@@ -34,7 +58,7 @@ func generer_jeu():
 	if music_path != "" and ResourceLoader.exists(music_path):
 		set_music(music_path)
 	
-	var joueur : Joueur = player_scene.instantiate()
+	joueur = player_scene.instantiate()
 	var joueurScaleValue : float = config.get_value("JOUEUR", "Scale", 0.0)
 	joueur.spriteScale = Vector2(joueurScaleValue, joueurScaleValue)
 	joueur.widthColissionShape = config.get_value("JOUEUR", "WidthColissionShape", 0.0)
@@ -106,7 +130,7 @@ func set_background_animation(background_sprite_frames_directory : String) -> vo
 		$Background.play("default")
 
 func set_music(music_path : String) -> void :
-	$BackgourndMusic.stream = load(music_path)
+	$MusicPlayer.stream = load(music_path)
 
 func add_ennemi_to_scene(changeXSpeedFactor : float, changeYSpeedFactor : float) :
 	var new_ennemi = ennemi_scene.instantiate()
@@ -125,9 +149,43 @@ func add_ennemi_to_scene(changeXSpeedFactor : float, changeYSpeedFactor : float)
 	
 	call_deferred("add_child", new_ennemi)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if not (event is InputEventKey) or not event.pressed or event.echo:
+		return
+	match event.keycode:
+		KEY_H:
+			if joueur != null and is_instance_valid(joueur):
+				# Mode test: cycle les vies 3 → 2 → 1 → 3 sans jamais tuer le vaisseau,
+				# tout en déclenchant l'effet HUD + l'invincibilité clignotante.
+				if joueur.lives <= 1:
+					joueur.lives = joueur.max_lives
+				else:
+					joueur.lives -= 1
+				joueur.invincible = true
+				joueur._invincible_remaining = joueur.invincibility_duration
+				joueur._blink_accum = 0.0
+				hud.play_hit_effect(_to_screen_position(joueur.global_position), joueur.lives)
+				print("[HUD TEST] vies restantes: ", joueur.lives)
+		KEY_J:
+			if joueur != null:
+				joueur.fuel = joueur.max_fuel * 0.15
+		KEY_K:
+			if joueur != null:
+				joueur.fuel = joueur.max_fuel
+		KEY_L:
+			if joueur != null:
+				joueur.fuel = 0.0
+
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is ToreWorldBody :
 		body.toreWorlBehaviour($Area2D/CollisionShape2D.shape.get_rect().size)
 
+func _on_vaisseau_hit_by_asteroid(ship_global_position: Vector2, lives_remaining: int) -> void:
+	hud.play_hit_effect(_to_screen_position(ship_global_position), lives_remaining)
+
+func _to_screen_position(world_position: Vector2) -> Vector2:
+	var canvas_transform := get_viewport().get_canvas_transform()
+	return canvas_transform * world_position
+	
 func end_game() :
 	$HUD.display_lose_menu()

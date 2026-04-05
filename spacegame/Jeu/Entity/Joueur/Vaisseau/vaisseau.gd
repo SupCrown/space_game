@@ -11,7 +11,6 @@ func _process(delta: float) -> void:
 		laser.rotation = rotation
 		get_parent().add_child(laser)
 		
-		
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("accelerer") || Input.is_action_pressed("droite") || Input.is_action_pressed("gauche") :
 		$Sprite2D.play("mouvement")

@@ -5,7 +5,18 @@ class_name Joueur
 @export var speed : float
 @export var torque : float
 
+signal hit_by_asteroid(ship_global_position: Vector2, lives_remaining: int)
+
 var laser_scene = preload("res://Jeu/Laser/laser.tscn")
+@export var max_fuel : float = 100.0
+@export var fuel_consumption_per_second : float = 25.0
+@export var max_lives : int = 3
+@export var invincibility_duration : float = 2.0
+var fuel : float = max_fuel
+var lives : int = max_lives
+var invincible : bool = false
+var _invincible_remaining : float = 0.0
+var _blink_accum : float = 0.0
 
 func _ready() -> void:
 	super()
@@ -19,8 +30,21 @@ func _process(delta: float) -> void:
 		laser.direction = -transform.y
 		laser.rotation = rotation
 		get_parent().add_child(laser)
-
+	
+	if invincible:
+		_invincible_remaining -= delta
+		_blink_accum += delta
+		var visible_phase : bool = fmod(_blink_accum, 0.2) < 0.1
+		$AnimatedSprite2D.modulate.a = 1.0 if visible_phase else 0.25
+		if _invincible_remaining <= 0.0:
+			invincible = false
+			_blink_accum = 0.0
+			$AnimatedSprite2D.modulate.a = 1.0
+			
 func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("accelerer"):
+		fuel = max(0.0, fuel - fuel_consumption_per_second * delta)
+	
 	if Input.is_action_pressed("accelerer") || Input.is_action_pressed("droite") || Input.is_action_pressed("gauche") :
 		$AnimatedSprite2D.play("mouvement")
 		if Input.is_action_pressed("accelerer"):
@@ -51,3 +75,20 @@ func set_animation(animation_name : String, sprite_frames_directory : String) :
 
 func kill() :
 	get_parent().end_game()
+
+func get_fuel_percent() -> float:
+	if max_fuel <= 0.0:
+		return 0.0
+	return clamp(fuel / max_fuel, 0.0, 1.0)
+
+func on_hit_by_asteroid() -> void:
+	if invincible:
+		return
+	lives = max(0, lives - 1)
+	hit_by_asteroid.emit(global_position, lives)
+	if lives <= 0:
+		call_deferred("queue_free")
+		return
+	invincible = true
+	_invincible_remaining = invincibility_duration
+	_blink_accum = 0.0

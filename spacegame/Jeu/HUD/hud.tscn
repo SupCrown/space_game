@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cuddj6nfy53yh"]
 
 [ext_resource type="Script" uid="uid://d4ce4verhhmkm" path="res://Jeu/HUD/hud.gd" id="1_42r63"]
+[ext_resource type="Texture2D" uid="uid://chpj40rpp3ka8" path="res://Ressources/HUD/jauge_pleine.svg" id="2_im4wk"]
+[ext_resource type="Shader" uid="uid://3l8d21epgxgr" path="res://Jeu/HUD/edge_vignette.gdshader" id="3_cacf8"]
+[ext_resource type="Shader" uid="uid://taw2o08qnhl8" path="res://Jeu/HUD/death_mask.gdshader" id="4_hdyg8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4t24e"]
 font_size = 50
@@ -61,6 +64,19 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdyg8"]
+shader = ExtResource("3_cacf8")
+shader_parameter/intensity = 0.0
+shader_parameter/softness = 0.55
+shader_parameter/tint = Color(1, 0.08, 0.08, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bb56r"]
+shader = ExtResource("4_hdyg8")
+shader_parameter/hole_center_uv = Vector2(0.5, 0.5)
+shader_parameter/hole_radius_uv = 0.6
+shader_parameter/edge_softness_uv = 0.05
+shader_parameter/overlay_alpha = 0.0
 
 [node name="HUD" type="MarginContainer" unique_id=1424467486]
 process_mode = 2
@@ -146,8 +162,27 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_hdyg8")
 text = "Retour 	au menu"
 
+[node name="FuelBar" type="TextureRect" parent="." unique_id=396737133]
+custom_minimum_size = Vector2(100, 144)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("2_im4wk")
+expand_mode = 1
+
+[node name="EdgeVignette" type="ColorRect" parent="." unique_id=2093208224]
+material = SubResource("ShaderMaterial_hdyg8")
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DeathMask" type="ColorRect" parent="." unique_id=538483948]
+material = SubResource("ShaderMaterial_bb56r")
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [connection signal="pressed" from="LoseMenu/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="LoseMenu/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="hide_pause_menu"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]

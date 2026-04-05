@@ -19,8 +19,3 @@ func impact_laser() -> void:
 	get_parent().call_deferred("add_child", asteroid1)
 	get_parent().call_deferred("add_child", asteroid2)
 	call_deferred("queue_free")
-
-
-
-func _on_body_entered(body: Node) -> void:
-	body_entered(body)
