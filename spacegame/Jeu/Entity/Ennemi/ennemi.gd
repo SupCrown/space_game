@@ -2,6 +2,7 @@ extends Entity
 class_name Ennemi
 
 @export var speed : Vector2
+@export var velocity : float
 @export var subDivisions : Array[Ennemi]
 
 var changeSpeedFactor : Array[int] = [1,-1]
@@ -44,5 +45,5 @@ func cloneDeep() -> Ennemi :
 	return ennemi
 
 func body_entered(body: Node) -> void:
-	if body is Vaisseau :
-		body.call_deferred("queue_free")
+	if body is Joueur :
+		body.kill()

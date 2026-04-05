@@ -3,6 +3,21 @@ extends Node2D
 var player_scene = preload("res://Jeu/Entity/Joueur/joueur.tscn")
 var ennemi_scene = preload("res://Jeu/Entity/Ennemi/Asteroids/asteroids.tscn")
 
+var ennemi : Ennemi = Ennemi.new()
+var divisions : Array[Ennemi] = []
+var ennemi_cooldown : float = -1.0
+
+var rng = RandomNumberGenerator.new()
+func _process(delta: float) -> void:
+	ennemi_cooldown -= delta
+	if (ennemi_cooldown < 0.0) :
+		ennemi_cooldown = 4.0
+		var randomNumerX = rng.randf_range(-1.0, 1.0)
+		var randomNumerY = rng.randf_range(-1.0, 1.0)
+		add_ennemi_to_scene(randomNumerX, randomNumerY)
+	if Input.is_action_pressed("pause") : 
+		$HUD.display_pause_menu()
+		
 func _ready():
 	generer_jeu()
 
@@ -48,7 +63,6 @@ func generer_jeu():
 		toHandle.push_back(subDivision)
 		subDivision = config.get_value(subDivision, "SubDivison", "")
 	
-	var divisions : Array[Ennemi] = []
 	while toHandle.size() != 0 : 
 		var divisionToHandel = toHandle.pop_back()
 		var subDivisionEnnemi : Ennemi = Ennemi.new()
@@ -63,14 +77,11 @@ func generer_jeu():
 		if divisions.size() > 0 :
 			subDivisionEnnemi.subDivisions = divisions
 			divisions = []
-			print(subDivisionEnnemi.subDivisions)
-			print(divisions)
 		
 		var nombre : int = config.get_value(divisionToHandel, "Number", 0)
 		for i in range(nombre) :
 			divisions.push_back(subDivisionEnnemi.cloneDeep())
 	
-	var ennemi : Ennemi = ennemi_scene.instantiate()
 	ennemi.spriteTexture = config.get_value("ENNEMI", "SpriteTexture", "")
 	var ennemiScaleValue : float = config.get_value("ENNEMI", "Scale", 0.0)
 	ennemi.spriteScale = Vector2(ennemiScaleValue, ennemiScaleValue)
@@ -78,13 +89,9 @@ func generer_jeu():
 	ennemi.heightColissionShape = config.get_value("ENNEMI", "HeightColissionShape", 0.0)
 	ennemi.positionXColissionShape = config.get_value("ENNEMI", "PositionXColissionShape", 0.0)
 	ennemi.positionYColissionShape = config.get_value("ENNEMI", "PositionYColissionShape", 0.0)
-	ennemi.speed = Vector2.UP * config.get_value("ENNEMI", "Speed", 0.0)
+	ennemi.velocity = config.get_value("ENNEMI", "Speed", 0.0)
+	ennemi.speed = Vector2.UP * ennemi.velocity
 	
-	if divisions.size() > 0 :
-		ennemi.subDivisions = divisions
-	
-	add_child(ennemi)
-
 func set_background_animation(background_sprite_frames_directory : String) -> void :
 	background_sprite_frames_directory = background_sprite_frames_directory.trim_suffix("/")
 	var files := DirAccess.get_files_at(background_sprite_frames_directory)
@@ -101,6 +108,26 @@ func set_background_animation(background_sprite_frames_directory : String) -> vo
 func set_music(music_path : String) -> void :
 	$BackgourndMusic.stream = load(music_path)
 
+func add_ennemi_to_scene(changeXSpeedFactor : float, changeYSpeedFactor : float) :
+	var new_ennemi = ennemi_scene.instantiate()
+	new_ennemi.spriteTexture = ennemi.spriteTexture
+	new_ennemi.spriteScale = ennemi.spriteScale
+	new_ennemi.widthColissionShape = ennemi.widthColissionShape
+	new_ennemi.heightColissionShape = ennemi.heightColissionShape
+	new_ennemi.positionXColissionShape = ennemi.positionXColissionShape
+	new_ennemi.positionYColissionShape = ennemi.positionXColissionShape
+	new_ennemi.speed = Vector2(changeXSpeedFactor * ennemi.velocity, changeYSpeedFactor * ennemi.velocity)
+
+	if divisions.size() > 0 :
+		new_ennemi.subDivisions = divisions.duplicate(true)
+	
+	new_ennemi.transform.origin = Vector2(-390.0, -290.0)
+	
+	call_deferred("add_child", new_ennemi)
+
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is ToreWorldBody :
 		body.toreWorlBehaviour($Area2D/CollisionShape2D.shape.get_rect().size)
+
+func end_game() :
+	$HUD.display_lose_menu()

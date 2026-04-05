@@ -1,18 +1,76 @@
 [gd_scene format=3 uid="uid://cuddj6nfy53yh"]
 
+[ext_resource type="Script" uid="uid://d4ce4verhhmkm" path="res://Jeu/HUD/hud.gd" id="1_42r63"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_4t24e"]
 font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_h61sl"]
 font_size = 25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42r63"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im4wk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_42r63"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_im4wk"]
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cacf8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdyg8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [node name="HUD" type="MarginContainer" unique_id=1424467486]
+process_mode = 2
 custom_minimum_size = Vector2(800, 600)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_42r63")
 
 [node name="Score" type="Label" parent="." unique_id=823441658]
 layout_mode = 2
@@ -20,32 +78,76 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "545"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=857607562]
+[node name="LoseMenu" type="MarginContainer" parent="." unique_id=857607562]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2101834229]
+[node name="Panel" type="Panel" parent="LoseMenu" unique_id=856523488]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoseMenu" unique_id=2101834229]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=901962935]
+[node name="Title" type="Label" parent="LoseMenu/VBoxContainer" unique_id=901962935]
 layout_mode = 2
 text = "PERDU"
 label_settings = SubResource("LabelSettings_4t24e")
 horizontal_alignment = 1
 
-[node name="FinalScore" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1495388368]
+[node name="FinalScore" type="Label" parent="LoseMenu/VBoxContainer" unique_id=1495388368]
 layout_mode = 2
 text = "545"
 label_settings = SubResource("LabelSettings_h61sl")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=833816977]
+[node name="Restart" type="Button" parent="LoseMenu/VBoxContainer" unique_id=833816977]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_42r63")
 text = "Réessayer"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1844022521]
+[node name="BackToMenu" type="Button" parent="LoseMenu/VBoxContainer" unique_id=1844022521]
 layout_mode = 2
-text = "Retour 	au menu
-"
+theme_override_styles/normal = SubResource("StyleBoxFlat_im4wk")
+text = "Retour 	au menu"
+
+[node name="PauseMenu" type="MarginContainer" parent="." unique_id=1404185846]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="PauseMenu" unique_id=484650405]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=1020493215]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer" unique_id=728426031]
+layout_mode = 2
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_42r63")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PauseMenu/VBoxContainer" unique_id=1005055402]
+layout_mode = 2
+text = "545"
+label_settings = SubResource("LabelSettings_im4wk")
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="PauseMenu/VBoxContainer" unique_id=980077450]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_cacf8")
+text = "Reprendre"
+
+[node name="BackToMenu" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1633427367]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_hdyg8")
+text = "Retour 	au menu"
+
+[connection signal="pressed" from="LoseMenu/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="LoseMenu/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="hide_pause_menu"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]

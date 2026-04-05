@@ -48,3 +48,6 @@ func set_animation(animation_name : String, sprite_frames_directory : String) :
 			if (!file.contains(".import")) :
 				$AnimatedSprite2D.sprite_frames.add_frame(animation_name, load(sprite_frames_directory + "/" + file))
 		$AnimatedSprite2D.sprite_frames.set_animation_loop(animation_name, true)
+
+func kill() :
+	get_parent().end_game()

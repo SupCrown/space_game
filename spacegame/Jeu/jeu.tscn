@@ -46,6 +46,7 @@ collision_mask = 7
 shape = SubResource("RectangleShape2D_f0c04")
 
 [node name="HUD" parent="." unique_id=1424467486 instance=ExtResource("7_tea16")]
+z_index = 4096
 
 [node name="BackgourndMusic" type="AudioStreamPlayer2D" parent="." unique_id=311367088]
 stream = ExtResource("8_t8hn6")

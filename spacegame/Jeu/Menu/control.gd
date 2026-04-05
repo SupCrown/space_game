@@ -26,3 +26,7 @@ func display_level_desc(desc : String, planetName : String) -> void:
 	$%Description.text = desc
 	$%TargetPlanetName.text = planetName
 	$DescriptionNiveau.show()
+
+
+func _on_play_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Jeu/jeu.tscn")

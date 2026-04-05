@@ -121,5 +121,6 @@ theme = ExtResource("3_k6lrb")
 text = "Quitter
 "
 
+[connection signal="pressed" from="DescriptionNiveau/Button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

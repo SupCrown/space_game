@@ -2,7 +2,7 @@ extends Node3D
 class_name Systeme_solaire
 
 var planete_scene = preload("res://Jeu/Menu/Planete.tscn")
-var vaisseau_scene = preload("res://Jeu/Joueur/Vaisseau/vaisseau.tscn")
+var vaisseau_scene = preload("res://Jeu/Menu/Vaisseau.tscn")
 var camera_scene = preload("res://Jeu/Menu/CameraRig.tscn")
 
 # Listes
