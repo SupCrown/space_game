@@ -188,4 +188,4 @@ func _to_screen_position(world_position: Vector2) -> Vector2:
 	return canvas_transform * world_position
 	
 func end_game() :
-	$HUD.display_lose_menu()
+	hud.display_lose_menu()

@@ -73,9 +73,6 @@ func set_animation(animation_name : String, sprite_frames_directory : String) :
 				$AnimatedSprite2D.sprite_frames.add_frame(animation_name, load(sprite_frames_directory + "/" + file))
 		$AnimatedSprite2D.sprite_frames.set_animation_loop(animation_name, true)
 
-func kill() :
-	get_parent().end_game()
-
 func get_fuel_percent() -> float:
 	if max_fuel <= 0.0:
 		return 0.0
@@ -87,6 +84,7 @@ func on_hit_by_asteroid() -> void:
 	lives = max(0, lives - 1)
 	hit_by_asteroid.emit(global_position, lives)
 	if lives <= 0:
+		get_parent().end_game()
 		call_deferred("queue_free")
 		return
 	invincible = true

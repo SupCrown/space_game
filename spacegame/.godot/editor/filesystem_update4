@@ -2,14 +2,5 @@ res://Jeu/HUD/hud.tscn
 res://Ressources/Ion.tres
 res://Ressources/Menu/main_theme.tres
 res://Jeu/Menu/Systeme_Sol.gdshader
-res://Jeu/Entity/Ennemi/Asteroids/asteroids.gd
-res://Jeu/Entity/Joueur/Vaisseau/vaisseau.gd
-res://Jeu/Entity/Ennemi/Asteroids/asteroids.tscn
-res://Jeu/Entity/Joueur/joueur.gd
-res://Jeu/Entity/Joueur/Vaisseau/vaisseau.tscn
-res://Jeu/Entity/Joueur/joueur.tscn
-res://Jeu/Entity/Ennemi/ennemi.gd
-res://Jeu/Entity/Ennemi/ennemi.tscn
 res://Jeu/jeu.gd
-res://Jeu/jeu.tscn
-res://Jeu/jeu.cfg
+res://Jeu/Entity/Joueur/joueur.gd
