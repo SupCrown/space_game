@@ -331,6 +331,7 @@ func set_background_animation(background_sprite_frames_directory : String) -> vo
 
 func set_music(music_path : String) -> void :
 	$MusicPlayer.stream = load(music_path)
+	$MusicPlayer.volume_db = (Settings.volume / 10) - 10
 
 # ==========================================================================
 #  HIT / GAME OVER

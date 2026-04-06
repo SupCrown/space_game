@@ -22,6 +22,7 @@ var speed: Vector2 = Vector2.ZERO
 var collected := false
 
 func _ready() -> void:
+	Settings.load_from_disk()
 	contact_monitor = true
 	max_contacts_reported = 4
 	var idx := collectible_id - 1
@@ -62,7 +63,7 @@ func _play_audio() -> void:
 		return
 	var player := AudioStreamPlayer.new()
 	player.stream = load(path)
-	player.volume_db = 5.0
+	player.volume_db = (Settings.volume / 10) - 10
 	# Add to scene root so it survives this node's queue_free
 	get_tree().root.add_child(player)
 	player.play()
