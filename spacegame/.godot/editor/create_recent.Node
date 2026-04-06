@@ -1,3 +1,5 @@
+CSGPolygon3D
+MeshInstance3D
 Button
 Label
 MarginContainer
@@ -10,5 +12,3 @@ Marker2D
 CollisionShape2D
 RemoteTransform2D
 AnimatedSprite2D
-RigidBody2D
-Sprite2D

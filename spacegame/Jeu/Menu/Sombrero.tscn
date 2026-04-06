@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dodeblxcmua2d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amfey"]
+albedo_color = Color(0.9706128, 0.51958454, 0.15725973, 1)
+
+[node name="Sombrero" type="Node3D" unique_id=892364061]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=2123788170]
+polygon = PackedVector2Array(0, 0, 0, 1, 0.106503844, 0.9778005, 0.20725358, 0.6079099, 0.27005374, 0.038552105, 0.9734613, 0.026942432, 1.0124354, 0.14897697, 1.0410622, 0.14553216, 1, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 16
+material = SubResource("StandardMaterial3D_amfey")
