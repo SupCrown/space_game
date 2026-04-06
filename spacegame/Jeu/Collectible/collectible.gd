@@ -43,7 +43,7 @@ func impact_laser() -> void:
 	if collected:
 		return
 	collected = true
-	var is_new := Settings.add_collectible(collectible_id)
+	var is_new = Settings.add_collectible(collectible_id)
 	_play_audio()
 	_notify_collected(is_new)
 	$CollisionShape2D.set_deferred("disabled", true)
