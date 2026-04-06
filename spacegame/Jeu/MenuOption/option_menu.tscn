@@ -112,6 +112,8 @@ offset_left = -274.0
 offset_top = -418.0
 offset_right = 280.0
 offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = SubResource("Theme_x2yo5")
 
 [node name="MenuControle" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1477174126]
@@ -122,11 +124,65 @@ offset_top = 109.0
 offset_right = 507.0
 offset_bottom = 151.0
 
-[node name="SpeedControle" type="Label" parent="PanelGlobal/PanelContener/MenuControle" unique_id=1357411974]
+[node name="Controls" type="VBoxContainer" parent="PanelGlobal/PanelContener/MenuControle" unique_id=1576333608]
+layout_mode = 2
+
+[node name="ControlContainer" type="MarginContainer" parent="PanelGlobal/PanelContener/MenuControle/Controls" unique_id=1822651419]
+layout_mode = 2
+
+[node name="SpeedControle" type="Label" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer" unique_id=1357411974]
 layout_mode = 2
 text = "Accèlerer :"
 
-[node name="SpeedControleKey" type="Button" parent="PanelGlobal/PanelContener/MenuControle" unique_id=1485324137]
+[node name="SpeedControleKey" type="Button" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer" unique_id=1485324137]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="ControlContainer2" type="MarginContainer" parent="PanelGlobal/PanelContener/MenuControle/Controls" unique_id=167527266]
+layout_mode = 2
+
+[node name="RightControl" type="Label" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer2" unique_id=1531855011]
+layout_mode = 2
+text = "Aller à droite :"
+
+[node name="RightControlKey" type="Button" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer2" unique_id=1022693251]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="ControlContainer3" type="MarginContainer" parent="PanelGlobal/PanelContener/MenuControle/Controls" unique_id=874707750]
+layout_mode = 2
+
+[node name="LeftControl" type="Label" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer3" unique_id=1903042911]
+layout_mode = 2
+text = "Aller à gauche :"
+
+[node name="LeftControlKey" type="Button" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer3" unique_id=2142217700]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="ControlContainer4" type="MarginContainer" parent="PanelGlobal/PanelContener/MenuControle/Controls" unique_id=159372347]
+layout_mode = 2
+
+[node name="ShootControl" type="Label" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer4" unique_id=2000325691]
+layout_mode = 2
+text = "Tirer :"
+
+[node name="ShootControlKey" type="Button" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer4" unique_id=1655451327]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="ControlContainer5" type="MarginContainer" parent="PanelGlobal/PanelContener/MenuControle/Controls" unique_id=1009970735]
+layout_mode = 2
+
+[node name="PauseControl" type="Label" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer5" unique_id=1892504542]
+layout_mode = 2
+text = "Pause :"
+
+[node name="PauseControlKey" type="Button" parent="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer5" unique_id=647002628]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
@@ -248,7 +304,11 @@ text = ">"
 [connection signal="pressed" from="PanelGlobal/PanelOption/ControleOption" to="." method="_on_ControlButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelOption/JoueurOption" to="." method="_on_JoueurButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/SaveButton" to="." method="_on_SaveButton_pressed"]
-[connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/SpeedControleKey" to="." method="_on_speed_controle_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer/SpeedControleKey" to="." method="_on_speed_controle_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer2/RightControlKey" to="." method="_on_right_control_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer3/LeftControlKey" to="." method="_on_left_control_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer4/ShootControlKey" to="." method="_on_shoot_control_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/Controls/ControlContainer5/PauseControlKey" to="." method="_on_pause_control_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer/HBoxContainer/ChoixGaucheVais" to="." method="_on_ChoixGaucheVais_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer/HBoxContainer/ChoixDroiteVaiss" to="." method="_on_ChoixDroiteVaiss_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurLazer/VBoxContainer/HBoxContainer/ChoixGaucheLaz" to="." method="_on_ChoixGaucheLaz_pressed"]

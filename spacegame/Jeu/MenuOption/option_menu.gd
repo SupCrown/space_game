@@ -2,12 +2,19 @@ extends Control
 
 @onready var volume_slider: Slider = $%MenuAudio/VolumeSlider
 @onready var resolution_option: OptionButton = $%MenuVideo/ChoixOption
-@onready var speed_control_btn: Button = $%MenuControle/SpeedControleKey
+@onready var speed_control_btn: Button = $%MenuControle/Controls/ControlContainer/SpeedControleKey
+@onready var right_control_btn: Button = $%MenuControle/Controls/ControlContainer2/RightControlKey
+@onready var left_control_btn: Button = $%MenuControle/Controls/ControlContainer3/LeftControlKey
+@onready var shoot_control_btn: Button = $%MenuControle/Controls/ControlContainer4/ShootControlKey
+@onready var pause_control_btn: Button = $%MenuControle/Controls/ControlContainer5/PauseControlKey
+var is_listening_for_speed_key: bool = false
+var is_listening_for_right_key: bool = false
+var is_listening_for_left_key: bool = false
+var is_listening_for_shoot_key: bool = false
+var is_listening_for_pause_key: bool = false
 
 @onready var ship_preview: Sprite2D = get_node_or_null("%Sprite2DVaisseauChoix")
 @onready var laser_preview: Sprite2D = get_node_or_null("%Sprite2DLazerChoix")
-
-var is_listening_for_speed_key: bool = false
 
 const BACK_SCENE := "res://Jeu/Menu/Systeme_Sol.tscn"
 
@@ -36,7 +43,11 @@ func apply_settings_to_ui() -> void:
 
 	volume_slider.value = Settings.volume
 	resolution_option.selected = Settings.resolution_index
-	speed_control_btn.text = OS.get_keycode_string(Settings.speed_key)
+	speed_control_btn.text = OS.get_keycode_string(Settings.keys["accelerer"])
+	right_control_btn.text = OS.get_keycode_string(Settings.keys["droite"])
+	left_control_btn.text = OS.get_keycode_string(Settings.keys["gauche"])
+	shoot_control_btn.text = OS.get_keycode_string(Settings.keys["tirer"])
+	pause_control_btn.text = OS.get_keycode_string(Settings.keys["pause"])
 	show_panel("audio")
 
 func show_panel(which: String) -> void:
@@ -81,19 +92,62 @@ func update_laser_preview() -> void:
 	laser_preview.texture = tex
 	laser_preview.scale = skin["scale"]
 
-# Quand le joueur clique sur le bouton pour changer la touche
 func _on_speed_controle_pressed() -> void:
 	is_listening_for_speed_key = true
 	speed_control_btn.text = "Appuyez sur une touche..."
 
+func _on_right_control_pressed() -> void:
+	is_listening_for_right_key = true
+	right_control_btn.text = "Appuyez sur une touche..."
+
+func _on_left_control_pressed() -> void:
+	is_listening_for_left_key = true
+	left_control_btn.text = "Appuyez sur une touche..."
+
+func _on_shoot_control_pressed() -> void:
+	is_listening_for_shoot_key = true
+	shoot_control_btn.text = "Appuyez sur une touche..."
+
+func _on_pause_control_pressed() -> void:
+	is_listening_for_pause_key = true
+	pause_control_btn.text = "Appuyez sur une touche..."
+
 # Godot lit cette fonction automatiquement à chaque fois qu'une touche ou un clic est détecté
 func _input(event: InputEvent) -> void:
 	if is_listening_for_speed_key and event is InputEventKey and event.pressed:
-		Settings.speed_key = event.keycode
+		Settings.keys["accelerer"] = event.keycode
 		speed_control_btn.text = OS.get_keycode_string(event.keycode)
 		is_listening_for_speed_key = false
 		get_viewport().set_input_as_handled()
-		Settings.appliquer_touche_acceleration()
+		Settings.appliquer_touche("accelerer")
+		
+	if is_listening_for_right_key and event is InputEventKey and event.pressed:
+		Settings.keys["droite"] = event.keycode
+		right_control_btn.text = OS.get_keycode_string(event.keycode)
+		is_listening_for_right_key = false
+		get_viewport().set_input_as_handled()
+		Settings.appliquer_touche("droite")
+		
+	if is_listening_for_left_key and event is InputEventKey and event.pressed:
+		Settings.keys["gauche"] = event.keycode
+		left_control_btn.text = OS.get_keycode_string(event.keycode)
+		is_listening_for_left_key = false
+		get_viewport().set_input_as_handled()
+		Settings.appliquer_touche("gauche")
+		
+	if is_listening_for_shoot_key and event is InputEventKey and event.pressed:
+		Settings.keys["tirer"] = event.keycode
+		shoot_control_btn.text = OS.get_keycode_string(event.keycode)
+		is_listening_for_shoot_key = false
+		get_viewport().set_input_as_handled()
+		Settings.appliquer_touche("tirer")
+		
+	if is_listening_for_pause_key and event is InputEventKey and event.pressed:
+		Settings.keys["pause"] = event.keycode
+		pause_control_btn.text = OS.get_keycode_string(event.keycode)
+		is_listening_for_pause_key = false
+		get_viewport().set_input_as_handled()
+		Settings.appliquer_touche("pause")
 
 # ----- Onglets -----
 func _on_AudioButton_pressed() -> void:

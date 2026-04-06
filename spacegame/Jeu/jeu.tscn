@@ -6,57 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dwnwjlxu6v818" path="res://Ressources/Backgrounds/earth_3.png" id="3_lm02w"]
 [ext_resource type="AudioStream" uid="uid://dbjtdnwwbmrbv" path="res://Ressources/Musiques/Asteriods.mp3" id="6_ul6wy"]
 [ext_resource type="PackedScene" uid="uid://cuddj6nfy53yh" path="res://Jeu/HUD/hud.tscn" id="7_tea16"]
-[ext_resource type="Script" path="res://Jeu/Bonus/bonus_config.gd" id="8_bcfg"]
-[ext_resource type="Script" path="res://Jeu/Bonus/bonus_spawner.gd" id="9_bspw"]
-
-[sub_resource type="Resource" id="Resource_bcfg"]
-script = ExtResource("8_bcfg")
-effect_duration = 5.0
-enable_slow_speed = true
-slow_speed_value = 120.0
-enable_fast_speed = true
-fast_speed_value = 600.0
-enable_triple_laser = true
-enable_powerful_laser = true
-enable_auto_fire = true
-enable_slow_fire = true
-slow_fire_cooldown = 0.6
-enable_random_controls = true
-enable_crazy_rotation = true
-crazy_rotation_force = 250.0
-enable_slow_motion = true
-slow_motion_scale = 0.5
-enable_asteroid_spawn = true
-asteroid_spawn_count = 2
-enable_super_6 = true
-super_6_chance = 0.05
-enable_extra_life = true
-enable_minus_life = true
-enable_shield = true
-shield_duration = 8.0
-enable_glue = true
-glue_speed_value = 40.0
-glue_torque_factor = 0.2
-enable_hyper_speed = true
-hyper_speed_value = 900.0
-enable_screamer = false
-screamer_duration = 2.0
-enable_jerrican = true
-jerrican_fuel_percent = 0.3
-enable_pacman = true
-pacman_duration = 6.0
-zone_width = 800.0
-zone_height = 600.0
-bonus_min_speed = 150.0
-bonus_max_speed = 250.0
-spawn_mode = 0
-spawn_chance = 1.0
-max_bonus_on_screen = 3
-spawn_interval = 8.0
-use_random_time = false
-min_spawn_time = 3.0
-max_spawn_time = 8.0
-points_between_spawn = 100
+[ext_resource type="Script" uid="uid://ckg1wfj0shox" path="res://Jeu/Bonus/bonus_config.gd" id="8_bcfg"]
+[ext_resource type="Script" uid="uid://dbpi68kdwpobv" path="res://Jeu/Bonus/bonus_spawner.gd" id="9_bspw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hw12f"]
 animations = [{
@@ -77,6 +28,12 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0c04"]
 size = Vector2(800, 600)
+
+[sub_resource type="Resource" id="Resource_bcfg"]
+script = ExtResource("8_bcfg")
+enable_screamer = false
+zone_width = 800.0
+spawn_interval = 8.0
 
 [node name="Jeu" type="Node2D" unique_id=1899592116]
 script = ExtResource("1_ul6wy")
@@ -101,11 +58,11 @@ z_index = 4096
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=27708738]
 stream = ExtResource("6_ul6wy")
-volume_db = 0.7
+volume_db = 0.5
 autoplay = true
 parameters/looping = true
 
-[node name="BonusSpawner" type="Node" parent="."]
+[node name="BonusSpawner" type="Node" parent="." unique_id=1239489340]
 script = ExtResource("9_bspw")
 config = SubResource("Resource_bcfg")
 
