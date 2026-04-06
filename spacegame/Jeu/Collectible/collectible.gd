@@ -12,7 +12,7 @@ const TEXTURE_PATHS := [
 	"res://Ressources/Collectibles/Collectible_7.png",
 ]
 const AUDIO_MAP := {
-	4: "res://Ressources/Collectibles/Collectible_4_audio.mp3",
+	2: "res://Ressources/Collectibles/Collectible_4_audio.mp3",
 	7: "res://Ressources/Collectibles/Collectible_7_audio.mp3",
 }
 
@@ -63,7 +63,7 @@ func _play_audio() -> void:
 		return
 	var player := AudioStreamPlayer.new()
 	player.stream = load(path)
-	player.volume_db = (Settings.volume / 10) - 10
+	player.volume_db = (Settings.volume / 2) - 50
 	# Add to scene root so it survives this node's queue_free
 	get_tree().root.add_child(player)
 	player.play()
