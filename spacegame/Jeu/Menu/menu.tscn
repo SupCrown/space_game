@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ikd1pv6e85f" path="res://Jeu/Menu/control.gd" id="1_vqyi6"]
 [ext_resource type="Theme" uid="uid://bjwi0nhwoko7c" path="res://Ressources/Menu/main_theme.tres" id="3_k6lrb"]
-[ext_resource type="FontFile" uid="uid://cssx86ais7ifi" path="res://Ressources/Fonts/SpaceArmor-vmlv4.otf" id="4_q5csn"]
+[ext_resource type="FontFile" uid="uid://bc6uaqc6ttj4s" path="res://Ressources/Fonts/APAPA.TTF" id="3_mhesj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_10acu"]
 font_size = 28
@@ -75,22 +75,11 @@ autowrap_mode = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="DescriptionNiveau/DescriptionContainer/PanelContainer" unique_id=1155960686]
 layout_mode = 2
 
-[node name="ModeLabel" type="Label" parent="DescriptionNiveau" unique_id=1170375977]
+[node name="ModeLabel" type="Label" parent="DescriptionNiveau" unique_id=417131579]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 text = "Mode de jeu :"
 label_settings = SubResource("LabelSettings_10acu")
-
-[node name="ModeSelector" type="OptionButton" parent="DescriptionNiveau" unique_id=580043904]
-layout_mode = 2
-theme = ExtResource("3_k6lrb")
-item_count = 3
-popup/item_0/text = "Classique"
-popup/item_0/id = 0
-popup/item_1/text = "Boss Rush"
-popup/item_1/id = 1
-popup/item_2/text = "Shooter"
-popup/item_2/id = 2
 
 [node name="Button" type="Button" parent="DescriptionNiveau" unique_id=356597597]
 layout_mode = 2
@@ -106,17 +95,17 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("4_q5csn")
+theme_override_fonts/font = ExtResource("3_mhesj")
 theme_override_font_sizes/font_size = 25
-text = "Geometry Wars"
+text = "oldel passo"
 horizontal_alignment = 2
 
 [node name="TitleSecondLine" type="Label" parent="TitleContainer" unique_id=459427879]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_fonts/font = ExtResource("4_q5csn")
+theme_override_fonts/font = ExtResource("3_mhesj")
 theme_override_font_sizes/font_size = 25
-text = "Galaxy"
+text = "Galaxy war"
 horizontal_alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=403482670]
@@ -124,7 +113,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="CollectionButton" type="Button" parent="VBoxContainer" unique_id=1522258967]
+[node name="CollectionButton" type="Button" parent="VBoxContainer" unique_id=1054322652]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 text = "Collection"
@@ -143,27 +132,27 @@ theme = ExtResource("3_k6lrb")
 text = "Quitter
 "
 
-[node name="CollectionPanel" type="PanelContainer" parent="." unique_id=1060913092]
+[node name="CollectionPanel" type="PanelContainer" parent="." unique_id=307287843]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBox" type="VBoxContainer" parent="CollectionPanel" unique_id=936481006]
+[node name="VBox" type="VBoxContainer" parent="CollectionPanel" unique_id=1377045813]
 layout_mode = 2
 
-[node name="CollectionTitle" type="Label" parent="CollectionPanel/VBox" unique_id=980955470]
+[node name="CollectionTitle" type="Label" parent="CollectionPanel/VBox" unique_id=1166003531]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 text = "Collection"
 label_settings = SubResource("LabelSettings_10acu")
 horizontal_alignment = 1
 
-[node name="CollectionGrid" type="GridContainer" parent="CollectionPanel/VBox" unique_id=1626785512]
+[node name="CollectionGrid" type="GridContainer" parent="CollectionPanel/VBox" unique_id=1120941410]
 layout_mode = 2
 columns = 4
 
-[node name="CloseCollection" type="Button" parent="CollectionPanel/VBox" unique_id=1116979180]
+[node name="CloseCollection" type="Button" parent="CollectionPanel/VBox" unique_id=1381214581]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 text = "Fermer"

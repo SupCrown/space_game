@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ddp4gny7jyaag"]
+
+[sub_resource type="Gradient" id="Gradient_yff4n"]
+offsets = PackedFloat32Array(0, 0.49019608)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qsn6e"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7apkr"]
+noise = SubResource("FastNoiseLite_qsn6e")
+color_ramp = SubResource("Gradient_yff4n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ki4sl"]
+albedo_color = Color(0.6341366, 0.7269271, 0.73345125, 1)
+albedo_texture = SubResource("NoiseTexture2D_7apkr")
+roughness = 0.0
+
+[node name="Tequila" type="Node3D" unique_id=169281133]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=1107468217]
+polygon = PackedVector2Array(0, 0, 0, 1, 0.11492729, 0.991247, 0.11492729, 0.910798, 0.06320953, 0.9050516, 0.068956375, 0.6809436, 0.29881048, 0.67519724, 0.3103037, 0.002873113)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 16
+material = SubResource("StandardMaterial3D_ki4sl")
