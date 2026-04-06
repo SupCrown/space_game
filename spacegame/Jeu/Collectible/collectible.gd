@@ -12,7 +12,7 @@ const TEXTURE_PATHS := [
 	"res://Ressources/Collectibles/Collectible_7.png",
 ]
 const AUDIO_MAP := {
-	4: "res://Ressources/Collectibles/Collectible_4_audio.mp3",
+	2: "res://Ressources/Collectibles/Collectible_4_audio.mp3",
 	7: "res://Ressources/Collectibles/Collectible_7_audio.mp3",
 }
 
@@ -22,6 +22,7 @@ var speed: Vector2 = Vector2.ZERO
 var collected := false
 
 func _ready() -> void:
+	Settings.load_from_disk()
 	contact_monitor = true
 	max_contacts_reported = 4
 	var idx := collectible_id - 1
@@ -43,7 +44,7 @@ func impact_laser() -> void:
 	if collected:
 		return
 	collected = true
-	var is_new := Settings.add_collectible(collectible_id)
+	var is_new = Settings.add_collectible(collectible_id)
 	_play_audio()
 	_notify_collected(is_new)
 	$CollisionShape2D.set_deferred("disabled", true)
@@ -62,7 +63,7 @@ func _play_audio() -> void:
 		return
 	var player := AudioStreamPlayer.new()
 	player.stream = load(path)
-	player.volume_db = 5.0
+	player.volume_db = (Settings.volume / 2) - 50
 	# Add to scene root so it survives this node's queue_free
 	get_tree().root.add_child(player)
 	player.play()

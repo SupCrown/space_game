@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://c5jx4xv65fkaf"]
 
-[ext_resource type="Script" path="res://Jeu/Collectible/collectible.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bvkryec7ux8yu" path="res://Jeu/Collectible/collectible.gd" id="1_script"]
 
-[node name="Collectible" type="RigidBody2D"]
+[node name="Collectible" type="RigidBody2D" unique_id=1846384964]
 collision_layer = 2
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_script")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=475295227]
 scale = Vector2(0.12, 0.12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=468198839]

@@ -16,7 +16,7 @@ var is_listening_for_pause_key: bool = false
 @onready var ship_preview: Sprite2D = get_node_or_null("%Sprite2DVaisseauChoix")
 @onready var laser_preview: Sprite2D = get_node_or_null("%Sprite2DLazerChoix")
 
-const BACK_SCENE := "res://Jeu/Menu/Systeme_Sol.tscn"
+const BACK_SCENE := "res://Jeu/Menu/Systeme.tscn"
 
 const SHIP_SKINS := [
 	{ "path": "res://Ressources/Vaisseau/Statique/perseus_1.png", "scale": Vector2(0.3, 0.3) },

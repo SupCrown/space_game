@@ -12,7 +12,7 @@ const COLLECTIBLE_TEXTURES := [
 ]
 
 const COLLECTIBLE_AUDIO := {
-	4: "res://Ressources/Collectibles/Collectible_4_audio.mp3",
+	2: "res://Ressources/Collectibles/Collectible_4_audio.mp3",
 	7: "res://Ressources/Collectibles/Collectible_7_audio.mp3",
 }
 
@@ -21,7 +21,6 @@ var _viewer_audio : AudioStreamPlayer = null
 
 func _ready() -> void:
 	$DescriptionNiveau.hide()
-	Settings.load_from_disk()
 
 func _on_option_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Jeu/MenuOption/option_menu.tscn")
@@ -121,11 +120,9 @@ func _show_collectible_viewer(collectible_id: int) -> void:
 			tex_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 			tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			tex_rect.set_anchors_preset(Control.PRESET_CENTER)
-			tex_rect.custom_minimum_size = Vector2(300, 300)
-			tex_rect.offset_left = -150
-			tex_rect.offset_top = -150
-			tex_rect.offset_right = 150
-			tex_rect.offset_bottom = 150
+			tex_rect.custom_minimum_size = Vector2(650, 650)
+			tex_rect.offset_left = -325
+			tex_rect.offset_top = -365
 			tex_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			_viewer_overlay.add_child(tex_rect)
 	# Label
@@ -145,7 +142,7 @@ func _show_collectible_viewer(collectible_id: int) -> void:
 		if ResourceLoader.exists(audio_path):
 			_viewer_audio = AudioStreamPlayer.new()
 			_viewer_audio.stream = load(audio_path)
-			_viewer_audio.volume_db = 5.0
+			_viewer_audio.volume_db = (Settings.volume / 2) - 50
 			_viewer_overlay.add_child(_viewer_audio)
 			_viewer_audio.play()
 

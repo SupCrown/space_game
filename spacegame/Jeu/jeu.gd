@@ -1,7 +1,7 @@
 extends Node2D
 
 var player_scene = preload("res://Jeu/Entity/Joueur/joueur.tscn")
-var ennemi_scene = preload("res://Jeu/Entity/Ennemi/Asteroids/asteroids.tscn")
+var ennemi_scene = preload("res://Jeu/Entity/Ennemi/ennemi.tscn")
 
 var ennemi : Ennemi = Ennemi.new()
 var divisions : Array[Ennemi] = []
@@ -16,6 +16,9 @@ var ennemi_spawn_interval : float = 6.0
 @onready var music_player : AudioStreamPlayer = $MusicPlayer
 
 var rng = RandomNumberGenerator.new()
+
+var xSpawnPositonValues : Array[int] = [-390, 390]
+var ySpawnPositonValues : Array[int] = [-290, 290]
 
 # --- Score ---
 var score : int = 0
@@ -49,7 +52,6 @@ var canvas_modulate : CanvasModulate = null
 # ==========================================================================
 
 func _ready():
-	Settings.load_from_disk()
 	generer_jeu()
 	if joueur != null:
 		joueur.hit_by_asteroid.connect(_on_vaisseau_hit_by_asteroid)
@@ -193,8 +195,10 @@ func _setup_shooter_mode() -> void:
 	# Enemy: plante carnivore (no subdivisions)
 	ennemi.spriteTexture = "res://Ressources/Enemies/plante carnivore.png"
 	ennemi.spriteScale = Vector2(0.06, 0.06)
-	ennemi.widthColissionShape = 25.0
-	ennemi.heightColissionShape = 25.0
+	ennemi.positionXColissionShape = 1.0
+	ennemi.positionYColissionShape = 3.0
+	ennemi.widthColissionShape = 54.0
+	ennemi.heightColissionShape = 107.0
 	divisions = []
 	ennemi_spawn_interval = 5.0
 	# Background
@@ -268,7 +272,7 @@ func add_ennemi_to_scene(changeXSpeedFactor : float, changeYSpeedFactor : float)
 	if divisions.size() > 0:
 		new_ennemi.subDivisions = divisions.duplicate(true)
 
-	new_ennemi.transform.origin = Vector2(-390.0, -290.0)
+	new_ennemi.transform.origin = Vector2(xSpawnPositonValues.pick_random(), ySpawnPositonValues.pick_random())
 	call_deferred("add_child", new_ennemi)
 
 func spawn_asteroids_from_bonus(count: int) -> void:
@@ -289,7 +293,7 @@ func spawn_boss() -> void:
 	boss.speed = Vector2(rx * ennemi.velocity * 0.5, ry * ennemi.velocity * 0.5)
 	if divisions.size() > 0:
 		boss.subDivisions = divisions.duplicate(true)
-	boss.transform.origin = Vector2(-390.0, -290.0)
+	boss.transform.origin = Vector2(xSpawnPositonValues.pick_random(), ySpawnPositonValues.pick_random())
 	boss.modulate = Color(1.0, 0.4, 0.4, 1.0)
 	call_deferred("add_child", boss)
 
@@ -326,6 +330,7 @@ func set_background_animation(background_sprite_frames_directory : String) -> vo
 
 func set_music(music_path : String) -> void :
 	$MusicPlayer.stream = load(music_path)
+	$MusicPlayer.volume_db = (Settings.volume / 2) - 50
 
 # ==========================================================================
 #  HIT / GAME OVER
