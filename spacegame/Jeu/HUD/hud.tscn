@@ -191,6 +191,6 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="LoseMenu/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="LoseMenu/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="hide_pause_menu"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="hide_pause_menu"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
