@@ -1,6 +1,1 @@
-res://Jeu/HUD/hud.tscn
-res://Ressources/Ion.tres
-res://Ressources/Menu/main_theme.tres
-res://Jeu/Menu/Systeme_Sol.gdshader
 res://Jeu/jeu.gd
-res://Jeu/Entity/Joueur/joueur.gd

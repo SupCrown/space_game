@@ -75,6 +75,22 @@ autowrap_mode = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="DescriptionNiveau/DescriptionContainer/PanelContainer" unique_id=1155960686]
 layout_mode = 2
 
+[node name="ModeLabel" type="Label" parent="DescriptionNiveau"]
+layout_mode = 2
+theme = ExtResource("3_k6lrb")
+text = "Mode de jeu :"
+label_settings = SubResource("LabelSettings_10acu")
+
+[node name="ModeSelector" type="OptionButton" parent="DescriptionNiveau"]
+layout_mode = 2
+theme = ExtResource("3_k6lrb")
+item_count = 3
+popup/item_0/text = "Classique"
+popup/item_1/text = "Boss Rush"
+popup/item_1/id = 1
+popup/item_2/text = "Shooter"
+popup/item_2/id = 2
+
 [node name="Button" type="Button" parent="DescriptionNiveau" unique_id=356597597]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
@@ -107,6 +123,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
+[node name="CollectionButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_k6lrb")
+text = "Collection"
+
 [node name="OptionButton" type="Button" parent="VBoxContainer" unique_id=2144061636]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
@@ -121,6 +142,33 @@ theme = ExtResource("3_k6lrb")
 text = "Quitter
 "
 
+[node name="CollectionPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBox" type="VBoxContainer" parent="CollectionPanel"]
+layout_mode = 2
+
+[node name="CollectionTitle" type="Label" parent="CollectionPanel/VBox"]
+layout_mode = 2
+theme = ExtResource("3_k6lrb")
+text = "Collection"
+label_settings = SubResource("LabelSettings_10acu")
+horizontal_alignment = 1
+
+[node name="CollectionGrid" type="GridContainer" parent="CollectionPanel/VBox"]
+layout_mode = 2
+columns = 4
+
+[node name="CloseCollection" type="Button" parent="CollectionPanel/VBox"]
+layout_mode = 2
+theme = ExtResource("3_k6lrb")
+text = "Fermer"
+
 [connection signal="pressed" from="DescriptionNiveau/Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CollectionButton" to="." method="_on_collection_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CollectionPanel/VBox/CloseCollection" to="." method="_on_close_collection_pressed"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmvswmly013u7"]
+
+[ext_resource type="Script" path="res://Jeu/Bonus/bonus.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://24icwe8651se" path="res://Ressources/Bonus/box power up.png" id="2_base"]
+[ext_resource type="Texture2D" uid="uid://cal170ka2mf3l" path="res://Ressources/Bonus/box power up clignote.png" id="3_clign"]
+[ext_resource type="Texture2D" uid="uid://fkqayikgnal7" path="res://Ressources/Bonus/box power up clignote jaune.png" id="4_cljau"]
+[ext_resource type="Texture2D" uid="uid://dqdvog56t4oow" path="res://Ressources/Bonus/explosion.png" id="5_expl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bonus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_base")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_clign")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cljau")
+}],
+"loop": true,
+"name": &"bonus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_expl")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bonus"]
+size = Vector2(30, 15.5)
+
+[node name="bonus" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_bonus")
+animation = &"bonus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bonus")

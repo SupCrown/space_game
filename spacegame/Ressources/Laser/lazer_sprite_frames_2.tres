@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://claz1l1ser2mm"]
+
+[ext_resource type="Texture2D" uid="uid://kogw1vkvcm6y" path="res://Ressources/Laser/lazer_type_2.png" id="1_laz"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_laz")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

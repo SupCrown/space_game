@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bpvm3vxy3x5y4"]
+
+[ext_resource type="Script" path="res://Asteroids/asteroids.gd" id="1_7ysfi"]
+[ext_resource type="Texture2D" uid="uid://butsr7ihpdkqe" path="res://Ressources/Asteroids/trash_1.png" id="2_1bbsi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53bie"]
+size = Vector2(123, 20)
+
+[node name="asteroids" type="RigidBody2D" unique_id=1391368840]
+collision_layer = 2
+inertia = 1.79
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_7ysfi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=916033055]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_1bbsi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=862520479]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_53bie")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

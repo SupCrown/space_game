@@ -86,6 +86,13 @@ offset_right = 548.0
 offset_bottom = 64.0
 text = "Contrôle"
 
+[node name="JoueurOption" type="Button" parent="PanelGlobal/PanelOption" unique_id=703307491]
+layout_mode = 0
+offset_left = 556.0
+offset_right = 688.0
+offset_bottom = 64.0
+text = "Joueur"
+
 [node name="SaveButton" type="Button" parent="PanelGlobal" unique_id=488930354]
 layout_mode = 0
 offset_left = 15.0
@@ -171,9 +178,78 @@ size_flags_vertical = 0
 text = "Volume :
 "
 
+[node name="MenuJoueurVaisseau" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1700000001]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 514.0
+offset_bottom = 230.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau" unique_id=1700000002]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer" unique_id=1700000003]
+layout_mode = 2
+text = "Vaisseau :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer" unique_id=1700000004]
+layout_mode = 2
+alignment = 1
+
+[node name="ChoixGaucheVais" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer/HBoxContainer" unique_id=1700000005]
+layout_mode = 2
+text = "<"
+
+[node name="Sprite2DVaisseauChoix" type="Sprite2D" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer/HBoxContainer" unique_id=1700000006]
+unique_name_in_owner = true
+position = Vector2(60, 40)
+
+[node name="ChoixDroiteVaiss" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer/HBoxContainer" unique_id=1700000007]
+layout_mode = 2
+text = ">"
+
+[node name="MenuJoueurLazer" type="PanelContainer" parent="PanelGlobal/PanelContener" unique_id=1700000010]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 240.0
+offset_right = 514.0
+offset_bottom = 380.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelGlobal/PanelContener/MenuJoueurLazer" unique_id=1700000011]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelGlobal/PanelContener/MenuJoueurLazer/VBoxContainer" unique_id=1700000012]
+layout_mode = 2
+text = "Laser :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelGlobal/PanelContener/MenuJoueurLazer/VBoxContainer" unique_id=1700000013]
+layout_mode = 2
+alignment = 1
+
+[node name="ChoixGaucheLaz" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurLazer/VBoxContainer/HBoxContainer" unique_id=1700000014]
+layout_mode = 2
+text = "<"
+
+[node name="Sprite2DLazerChoix" type="Sprite2D" parent="PanelGlobal/PanelContener/MenuJoueurLazer/VBoxContainer/HBoxContainer" unique_id=1700000015]
+unique_name_in_owner = true
+position = Vector2(60, 40)
+
+[node name="ChoixDroiteLazer" type="Button" parent="PanelGlobal/PanelContener/MenuJoueurLazer/VBoxContainer/HBoxContainer" unique_id=1700000016]
+layout_mode = 2
+text = ">"
+
 [connection signal="pressed" from="PanelGlobal/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelOption/SonOption" to="." method="_on_AudioButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelOption/VideoOption" to="." method="_on_VideoButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelOption/ControleOption" to="." method="_on_ControlButton_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelOption/JoueurOption" to="." method="_on_JoueurButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/SaveButton" to="." method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="PanelGlobal/PanelContener/MenuControle/SpeedControleKey" to="." method="_on_speed_controle_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer/HBoxContainer/ChoixGaucheVais" to="." method="_on_ChoixGaucheVais_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurVaisseau/VBoxContainer/HBoxContainer/ChoixDroiteVaiss" to="." method="_on_ChoixDroiteVaiss_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurLazer/VBoxContainer/HBoxContainer/ChoixGaucheLaz" to="." method="_on_ChoixGaucheLaz_pressed"]
+[connection signal="pressed" from="PanelGlobal/PanelContener/MenuJoueurLazer/VBoxContainer/HBoxContainer/ChoixDroiteLazer" to="." method="_on_ChoixDroiteLazer_pressed"]

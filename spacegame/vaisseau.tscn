@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://crbt7bckukslt"]
+
+[ext_resource type="Script" path="res://Menu/vaisseau.gd" id="1_6t0hd"]
+[ext_resource type="ArrayMesh" uid="uid://c073bn311fea6" path="res://Ressources/Vaisseau/RedFighter.obj" id="2_4goc5"]
+[ext_resource type="Texture2D" uid="uid://dd3gxo8xjnn4c" path="res://Ressources/RedFighter.png" id="3_gbm1e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yd5pr"]
+albedo_texture = ExtResource("3_gbm1e")
+
+[node name="Vaisseau" type="Node3D" unique_id=558062943]
+script = ExtResource("1_6t0hd")
+
+[node name="Visuel" type="MeshInstance3D" parent="." unique_id=69862068]
+transform = Transform3D(0.215159, 0, 0, 0, 0.215159, 0, 0, 0, 0.215159, -3.35996, -0.713476, 2.35205)
+mesh = ExtResource("2_4goc5")
+surface_material_override/0 = SubResource("StandardMaterial3D_yd5pr")

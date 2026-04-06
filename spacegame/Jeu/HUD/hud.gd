@@ -11,6 +11,8 @@ const FUEL_TEX_EMPTY : Texture2D = preload("res://Ressources/HUD/jauge_vide_tota
 @onready var fuel_bar : TextureRect = $FuelBar
 @onready var edge_vignette : ColorRect = $EdgeVignette
 @onready var death_mask : ColorRect = $DeathMask
+@onready var score_label : Label = $Score
+@onready var bonus_label : Label = $BonusLabel
 
 var _blink_time : float = 0.0
 var _edge_material : ShaderMaterial
@@ -20,9 +22,20 @@ func _ready() -> void:
 	_reset_damage_overlay()
 	_set_edge_intensity(0.0)
 	fuel_bar.texture = FUEL_TEX_FULL
+	update_score(0)
+	bonus_label.visible = false
 
 func _process(delta: float) -> void:
 	_blink_time += delta
+
+# --- Score ---
+
+func update_score(score: int) -> void:
+	score_label.text = str(score)
+	$LoseMenu/VBoxContainer/FinalScore.text = "Score : " + str(score)
+	$PauseMenu/VBoxContainer/Label2.text = "Score : " + str(score)
+
+# --- Fuel ---
 
 func update_fuel(fuel_percent: float) -> void:
 	var clamped_percent : float = clampf(fuel_percent, 0.0, 1.0)
@@ -36,6 +49,19 @@ func update_fuel(fuel_percent: float) -> void:
 	var pulse : float = 0.5 + 0.5 * sin(_blink_time * (8.0 + danger * 12.0))
 	var final_intensity : float = lerpf(0.2, 0.9, danger) * pulse
 	_set_edge_intensity(final_intensity)
+
+# --- Bonus notification ---
+
+func show_bonus_text(text: String) -> void:
+	bonus_label.text = text
+	bonus_label.modulate.a = 1.0
+	bonus_label.visible = true
+	var tween := create_tween()
+	tween.tween_interval(1.5)
+	tween.tween_property(bonus_label, "modulate:a", 0.0, 0.5)
+	tween.tween_callback(func(): bonus_label.visible = false)
+
+# --- Hit effect ---
 
 func play_hit_effect(ship_screen_pos: Vector2, lives_remaining: int = 3) -> void:
 	var material := death_mask.material as ShaderMaterial
@@ -56,36 +82,25 @@ func play_hit_effect(ship_screen_pos: Vector2, lives_remaining: int = 3) -> void
 	death_mask.visible = true
 
 	var tween := create_tween()
-	# fermeture
 	tween.set_parallel(true)
 	tween.tween_property(material, "shader_parameter/overlay_alpha", 1.0, 0.25)
 	tween.tween_property(material, "shader_parameter/hole_radius_uv", close_radius, 0.5)
-	# maintien fermé autour du vaisseau (temps de voir combien de vies il reste)
 	tween.chain().tween_interval(0.65)
-	# ré-ouverture
 	tween.chain().set_parallel(true)
 	tween.tween_property(material, "shader_parameter/overlay_alpha", 0.0, 0.55)
 	tween.tween_property(material, "shader_parameter/hole_radius_uv", open_radius, 0.55)
 
 func _close_radius_for_lives(lives_remaining: int) -> float:
-	# Plus il reste peu de vies, plus le trou se resserre près du vaisseau.
 	match lives_remaining:
-		3:
-			return 0.22
-		2:
-			return 0.14
-		1:
-			return 0.07
-		_:
-			return 0.03
+		3: return 0.22
+		2: return 0.14
+		1: return 0.07
+		_: return 0.03
 
 func _fuel_texture_for(percent: float) -> Texture2D:
-	if percent >= 0.75:
-		return FUEL_TEX_FULL
-	if percent >= 0.40:
-		return FUEL_TEX_HALF
-	if percent >= 0.10:
-		return FUEL_TEX_LOW
+	if percent >= 0.75: return FUEL_TEX_FULL
+	if percent >= 0.40: return FUEL_TEX_HALF
+	if percent >= 0.10: return FUEL_TEX_LOW
 	return FUEL_TEX_EMPTY
 
 func _set_edge_intensity(intensity: float) -> void:
@@ -98,6 +113,8 @@ func _reset_damage_overlay() -> void:
 		material.set_shader_parameter("overlay_alpha", 0.0)
 		material.set_shader_parameter("hole_radius_uv", 0.8)
 	death_mask.visible = true
+
+# --- Menus ---
 
 func display_pause_menu() :
 	$PauseMenu.visible = true
