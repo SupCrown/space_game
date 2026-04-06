@@ -54,11 +54,11 @@ collision_mask = 7
 shape = SubResource("RectangleShape2D_f0c04")
 
 [node name="HUD" parent="." unique_id=1424467486 instance=ExtResource("7_tea16")]
+process_mode = 3
 z_index = 4096
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=27708738]
 stream = ExtResource("6_ul6wy")
-volume_db = 0.5
 autoplay = true
 parameters/looping = true
 

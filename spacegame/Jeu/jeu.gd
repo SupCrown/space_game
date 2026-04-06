@@ -52,7 +52,6 @@ var canvas_modulate : CanvasModulate = null
 # ==========================================================================
 
 func _ready():
-	Settings.load_from_disk()
 	generer_jeu()
 	if joueur != null:
 		joueur.hit_by_asteroid.connect(_on_vaisseau_hit_by_asteroid)
@@ -331,6 +330,7 @@ func set_background_animation(background_sprite_frames_directory : String) -> vo
 
 func set_music(music_path : String) -> void :
 	$MusicPlayer.stream = load(music_path)
+	$MusicPlayer.volume_db = (Settings.volume / 2) - 50
 
 # ==========================================================================
 #  HIT / GAME OVER

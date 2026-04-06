@@ -16,6 +16,9 @@ var game_mode: int = 0
 # Collectibles (IDs 1-7) that the player has found
 var collected_items: Array[int] = []
 
+func _ready() -> void:
+	Settings.load_from_disk()
+
 func appliquer_touche(eventName : String) -> void:
 	# 1. On crée un "faux" événement clavier
 	var nouvel_event = InputEventKey.new()
