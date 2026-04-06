@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dndlehvjgrfrf" path="res://Jeu/jeu.gd" id="1_f0c04"]
 [ext_resource type="Texture2D" uid="uid://bqerqy12hwufi" path="res://Ressources/BackGrounds/earth_1.png" id="1_vsjop"]
-[ext_resource type="Script" uid="uid://dkp0ej2s211ew" path="res://bonus_config.gd" id="2_7nf2q"]
 [ext_resource type="Texture2D" uid="uid://dlyl75you4dd8" path="res://Ressources/BackGrounds/earth_2.png" id="2_f0c04"]
 [ext_resource type="Texture2D" uid="uid://dwnwjlxu6v818" path="res://Ressources/BackGrounds/earth_3.png" id="3_lm02w"]
 [ext_resource type="PackedScene" uid="uid://cvhdjr8k6k316" path="res://Vaisseau/vaisseau.tscn" id="5_ul6wy"]
 [ext_resource type="PackedScene" uid="uid://biibdkvca6uu1" path="res://Asteroids/asteroids.tscn" id="6_tea16"]
-[ext_resource type="Script" uid="uid://qp0alhexg04q" path="res://bonus_spawner.gd" id="7_7nf2q"]
 [ext_resource type="PackedScene" uid="uid://cuddj6nfy53yh" path="res://HUD/hud.tscn" id="7_tea16"]
+[ext_resource type="PackedScene" uid="uid://b6yj8rojv4jsi" path="res://Bonus/BonusSystem.tscn" id="8_t8hn6"]
+[ext_resource type="Script" uid="uid://dkp0ej2s211ew" path="res://Bonus/bonus_config.gd" id="9_7nf2q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hw12f"]
 animations = [{
@@ -31,17 +31,18 @@ animations = [{
 size = Vector2(800, 600)
 
 [sub_resource type="Resource" id="Resource_bp6pd"]
-script = ExtResource("2_7nf2q")
+script = ExtResource("9_7nf2q")
 enable_slow_speed = false
 enable_fast_speed = false
+enable_triple_laser = false
 enable_powerful_laser = false
 enable_auto_fire = false
-enable_slow_fire = false
 enable_random_controls = false
 enable_crazy_rotation = false
 enable_slow_motion = false
 enable_asteroid_spawn = false
 enable_super_6 = false
+max_bonus_on_screen = 13
 metadata/_custom_type_script = "uid://dkp0ej2s211ew"
 
 [node name="jeu" type="Node2D" unique_id=1899592116]
@@ -69,20 +70,13 @@ inertia = 15.0
 
 [node name="asteroids" parent="." unique_id=1391368840 instance=ExtResource("6_tea16")]
 
-[node name="BonusSpawner" type="Node" parent="." unique_id=43457406]
-script = ExtResource("7_7nf2q")
-config = SubResource("Resource_bp6pd")
-metadata/_custom_type_script = "uid://qp0alhexg04q"
-
 [node name="HUD" parent="." unique_id=1424467486 instance=ExtResource("7_tea16")]
 offset_left = -400.0
-offset_top = -299.0
+offset_top = -297.0
 offset_right = 400.0
-offset_bottom = 301.0
+offset_bottom = 303.0
 
-[node name="BonusTimer" type="Timer" parent="." unique_id=769242113]
-wait_time = 5.0
-autostart = true
+[node name="BonusSystem" parent="." unique_id=1019588107 instance=ExtResource("8_t8hn6")]
+config = SubResource("Resource_bp6pd")
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="BonusTimer" to="." method="_on_bonus_timer_timeout"]

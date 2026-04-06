@@ -45,6 +45,18 @@ func _ready() -> void:
 	current_speed = base_speed
 	apply_ship_skin()
 
+func _process(delta: float) -> void:
+	handle_shoot()
+
+func _physics_process(delta: float) -> void:
+	handle_movement()
+	handle_rotation()
+	update_animation()
+
+# =========================
+# SKIN
+# =========================
+
 func apply_ship_skin() -> void:
 	if Settings.ship_skin_index < 0 or Settings.ship_skin_index >= SHIP_SKINS.size():
 		push_error("Index vaisseau invalide")
@@ -53,27 +65,17 @@ func apply_ship_skin() -> void:
 	var skin = SHIP_SKINS[Settings.ship_skin_index]
 	var frames: SpriteFrames = load(skin["frames"])
 
-	print("Ship index :", Settings.ship_skin_index)
-	print("Frames path :", skin["frames"])
-	print("Frames loaded :", frames)
-
 	if frames == null:
 		push_error("Impossible de charger frames : " + skin["frames"])
 		return
-
-	print("Animations dispo :", frames.get_animation_names())
 
 	$AnimatedSprite2D.sprite_frames = frames
 	$AnimatedSprite2D.scale = skin["scale"]
 	$AnimatedSprite2D.play("stop")
 
-func _process(delta: float) -> void:
-	handle_shoot()
-
-func _physics_process(delta: float) -> void:
-	handle_movement()
-	handle_rotation()
-	update_animation()
+# =========================
+# GAMEPLAY CORE
+# =========================
 
 func handle_shoot() -> void:
 	if not can_shoot:
@@ -132,6 +134,10 @@ func spawn_laser(marker: Marker2D) -> void:
 	laser.is_powerful = powerful_laser
 	get_parent().add_child(laser)
 
+# =========================
+# CONTROLS
+# =========================
+
 func get_action_for(action_name: String) -> String:
 	if randomized_controls and control_map.has(action_name):
 		return control_map[action_name]
@@ -147,27 +153,24 @@ func randomize_controls() -> void:
 	control_map["gauche"] = shuffled[2]
 
 	print("MALUS ACTIVE : controles randomises")
-	print("accelerer -> ", control_map["accelerer"])
-	print("droite -> ", control_map["droite"])
-	print("gauche -> ", control_map["gauche"])
 
 func reset_controls() -> void:
 	control_map["accelerer"] = "accelerer"
 	control_map["droite"] = "droite"
 	control_map["gauche"] = "gauche"
 
-func set_slow_mode(speed_value: float, duration: float) -> void:
-	speed_bonus_id += 1
-	var my_id = speed_bonus_id
+# =========================
+# UI MESSAGE
+# =========================
 
-	current_speed = speed_value
-	print("MALUS ACTIVE : vitesse lente")
+func show_bonus_message(text: String, is_malus: bool = false) -> void:
+	var ui = get_tree().get_first_node_in_group("bonus_ui")
+	if ui != null:
+		ui.show_message(text, is_malus)
 
-	await get_tree().create_timer(duration).timeout
-
-	if my_id == speed_bonus_id:
-		current_speed = base_speed
-		print("MALUS TERMINE : vitesse normale")
+# =========================
+# BONUS
+# =========================
 
 func set_fast_mode(speed_value: float, duration: float) -> void:
 	speed_bonus_id += 1
@@ -175,12 +178,14 @@ func set_fast_mode(speed_value: float, duration: float) -> void:
 
 	current_speed = speed_value
 	print("BONUS ACTIVE : vitesse rapide")
+	show_bonus_message("BONUS : vitesse rapide", false)
 
 	await get_tree().create_timer(duration).timeout
 
 	if my_id == speed_bonus_id:
 		current_speed = base_speed
 		print("BONUS TERMINE : vitesse normale")
+		show_bonus_message("BONUS TERMINE : vitesse normale", false)
 
 func add_extra_laser(duration: float) -> void:
 	laser_bonus_id += 1
@@ -188,12 +193,14 @@ func add_extra_laser(duration: float) -> void:
 
 	triple_laser = true
 	print("BONUS ACTIVE : triple laser")
+	show_bonus_message("BONUS : triple laser", false)
 
 	await get_tree().create_timer(duration).timeout
 
 	if my_id == laser_bonus_id:
 		triple_laser = false
 		print("BONUS TERMINE : tir normal")
+		show_bonus_message("BONUS TERMINE : tir normal", false)
 
 func set_powerful_laser(duration: float) -> void:
 	laser_power_bonus_id += 1
@@ -201,12 +208,14 @@ func set_powerful_laser(duration: float) -> void:
 
 	powerful_laser = true
 	print("BONUS ACTIVE : laser puissant")
+	show_bonus_message("BONUS : laser puissant", false)
 
 	await get_tree().create_timer(duration).timeout
 
 	if my_id == laser_power_bonus_id:
 		powerful_laser = false
 		print("BONUS TERMINE : laser normal")
+		show_bonus_message("BONUS TERMINE : laser normal", false)
 
 func set_slow_motion(duration: float) -> void:
 	slow_motion_bonus_id += 1
@@ -214,12 +223,14 @@ func set_slow_motion(duration: float) -> void:
 
 	Engine.time_scale = 0.5
 	print("BONUS ACTIVE : slow motion")
+	show_bonus_message("BONUS : slow motion", false)
 
 	await get_tree().create_timer(duration * 2.0).timeout
 
 	if my_id == slow_motion_bonus_id:
 		Engine.time_scale = 1.0
 		print("BONUS TERMINE : vitesse normale")
+		show_bonus_message("BONUS TERMINE : vitesse normale", false)
 
 func set_auto_fire(duration: float) -> void:
 	auto_fire_bonus_id += 1
@@ -227,15 +238,18 @@ func set_auto_fire(duration: float) -> void:
 
 	auto_fire = true
 	print("BONUS ACTIVE : tir automatique")
+	show_bonus_message("BONUS : tir automatique", false)
 
 	await get_tree().create_timer(duration).timeout
 
 	if my_id == auto_fire_bonus_id:
 		auto_fire = false
 		print("BONUS TERMINE : tir manuel")
+		show_bonus_message("BONUS TERMINE : tir automatique", false)
 
 func activate_super_6(duration: float, fast_speed_value: float) -> void:
 	print("BONUS ACTIVE : SUPER 6")
+	show_bonus_message("BONUS : SUPER 6", false)
 
 	set_fast_mode(fast_speed_value, duration)
 	add_extra_laser(duration)
@@ -243,18 +257,39 @@ func activate_super_6(duration: float, fast_speed_value: float) -> void:
 	set_auto_fire(duration)
 	set_slow_motion(duration)
 
+# =========================
+# MALUS
+# =========================
+
+func set_slow_mode(speed_value: float, duration: float) -> void:
+	speed_bonus_id += 1
+	var my_id = speed_bonus_id
+
+	current_speed = speed_value
+	print("MALUS ACTIVE : vitesse lente")
+	show_bonus_message("MALUS : vitesse lente", true)
+
+	await get_tree().create_timer(duration).timeout
+
+	if my_id == speed_bonus_id:
+		current_speed = base_speed
+		print("MALUS TERMINE : vitesse normale")
+		show_bonus_message("MALUS TERMINE : vitesse normale", true)
+
 func set_slow_fire(duration: float) -> void:
 	fire_rate_bonus_id += 1
 	var my_id = fire_rate_bonus_id
 
 	shoot_cooldown = slow_shoot_cooldown
 	print("MALUS ACTIVE : tir lent")
+	show_bonus_message("MALUS : tir lent", true)
 
 	await get_tree().create_timer(duration).timeout
 
 	if my_id == fire_rate_bonus_id:
 		shoot_cooldown = normal_shoot_cooldown
 		print("MALUS TERMINE : tir normal")
+		show_bonus_message("MALUS TERMINE : tir normal", true)
 
 func set_random_controls(duration: float) -> void:
 	random_controls_bonus_id += 1
@@ -262,6 +297,7 @@ func set_random_controls(duration: float) -> void:
 
 	randomized_controls = true
 	randomize_controls()
+	show_bonus_message("MALUS : controles randomises", true)
 
 	await get_tree().create_timer(duration).timeout
 
@@ -269,6 +305,7 @@ func set_random_controls(duration: float) -> void:
 		randomized_controls = false
 		reset_controls()
 		print("MALUS TERMINE : controles normaux")
+		show_bonus_message("MALUS TERMINE : controles normaux", true)
 
 func set_crazy_rotation(duration: float) -> void:
 	crazy_rotation_bonus_id += 1
@@ -276,9 +313,11 @@ func set_crazy_rotation(duration: float) -> void:
 
 	crazy_rotation = true
 	print("MALUS ACTIVE : rotation folle")
+	show_bonus_message("MALUS : rotation folle", true)
 
 	await get_tree().create_timer(duration).timeout
 
 	if my_id == crazy_rotation_bonus_id:
 		crazy_rotation = false
 		print("MALUS TERMINE : rotation normale")
+		show_bonus_message("MALUS TERMINE : rotation normale", true)
