@@ -75,17 +75,18 @@ autowrap_mode = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="DescriptionNiveau/DescriptionContainer/PanelContainer" unique_id=1155960686]
 layout_mode = 2
 
-[node name="ModeLabel" type="Label" parent="DescriptionNiveau"]
+[node name="ModeLabel" type="Label" parent="DescriptionNiveau" unique_id=1170375977]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 text = "Mode de jeu :"
 label_settings = SubResource("LabelSettings_10acu")
 
-[node name="ModeSelector" type="OptionButton" parent="DescriptionNiveau"]
+[node name="ModeSelector" type="OptionButton" parent="DescriptionNiveau" unique_id=580043904]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 item_count = 3
 popup/item_0/text = "Classique"
+popup/item_0/id = 0
 popup/item_1/text = "Boss Rush"
 popup/item_1/id = 1
 popup/item_2/text = "Shooter"
@@ -123,7 +124,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="CollectionButton" type="Button" parent="VBoxContainer"]
+[node name="CollectionButton" type="Button" parent="VBoxContainer" unique_id=1522258967]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 text = "Collection"
@@ -142,27 +143,27 @@ theme = ExtResource("3_k6lrb")
 text = "Quitter
 "
 
-[node name="CollectionPanel" type="PanelContainer" parent="."]
+[node name="CollectionPanel" type="PanelContainer" parent="." unique_id=1060913092]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBox" type="VBoxContainer" parent="CollectionPanel"]
+[node name="VBox" type="VBoxContainer" parent="CollectionPanel" unique_id=936481006]
 layout_mode = 2
 
-[node name="CollectionTitle" type="Label" parent="CollectionPanel/VBox"]
+[node name="CollectionTitle" type="Label" parent="CollectionPanel/VBox" unique_id=980955470]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 text = "Collection"
 label_settings = SubResource("LabelSettings_10acu")
 horizontal_alignment = 1
 
-[node name="CollectionGrid" type="GridContainer" parent="CollectionPanel/VBox"]
+[node name="CollectionGrid" type="GridContainer" parent="CollectionPanel/VBox" unique_id=1626785512]
 layout_mode = 2
 columns = 4
 
-[node name="CloseCollection" type="Button" parent="CollectionPanel/VBox"]
+[node name="CloseCollection" type="Button" parent="CollectionPanel/VBox" unique_id=1116979180]
 layout_mode = 2
 theme = ExtResource("3_k6lrb")
 text = "Fermer"

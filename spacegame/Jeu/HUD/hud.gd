@@ -130,7 +130,7 @@ func display_lose_menu() :
 
 func _on_back_to_menu_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Jeu/Menu/Systeme_Sol.tscn")
+	get_tree().change_scene_to_file("res://Jeu/Menu/Systeme.tscn")
 
 func _on_restart_pressed() -> void:
 	get_tree().paused = false

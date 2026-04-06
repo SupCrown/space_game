@@ -181,11 +181,10 @@ layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="BonusLabel" type="Label" parent="."]
+[node name="BonusLabel" type="Label" parent="." unique_id=1528582282]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 label_settings = SubResource("LabelSettings_4t24e")
 horizontal_alignment = 1
 vertical_alignment = 1
