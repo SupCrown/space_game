@@ -1,6 +1,0 @@
-res://Jeu/jeu.tscn
-res://Ressources/Ion.tres
-res://Jeu/MenuOption/Settings.gd
-res://Jeu/MenuOption/option_menu.tscn
-res://Ressources/Menu/main_theme.tres
-res://Jeu/MenuOption/option_menu.gd
