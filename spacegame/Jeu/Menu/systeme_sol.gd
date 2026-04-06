@@ -37,6 +37,7 @@ func generer_systeme_solaire():
 		p.rotation_speed_Planete = config.get_value(planet_name, "SPEED", 1.0)
 		p.isSun = config.get_value(planet_name, "ISSUN", false)
 		p.LevelDescription = config.get_value(planet_name, "LEVEL_DESCRIPTION", "No desc. Un peu tristounet quand-même.")
+		p.has_sombrero = config.get_value(planet_name, "HAS_SOMBRERO", false)
 		
 		var path_mat = config.get_value(planet_name, "MATERIAL", "")
 		if path_mat != "" and ResourceLoader.exists(path_mat):

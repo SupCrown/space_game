@@ -7,6 +7,7 @@ class_name Planet
 @export var PlanetScale : Vector3
 @export var isSun : bool = false
 @export var LevelDescription : String
+@export var has_sombrero : bool = false
 
 func _ready() -> void:
 
@@ -24,7 +25,12 @@ func _ready() -> void:
 		
 	if isSun and has_node("OmniLight3D"):
 		$Planete/OmniLight3D.visible = true
-
+		
+	if has_sombrero:
+		var sombrero = load("res://Jeu/Menu/Sombrero.tscn").instantiate()
+		$Planete.add_child(sombrero)
+		sombrero.position = Vector3(0, 0.45, 0)
+		sombrero.scale = Vector3(0.7, 0.7, 0.7)
 func _process(delta: float) -> void:
 
 	if has_node("Planete"):
