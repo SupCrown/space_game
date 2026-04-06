@@ -9,7 +9,7 @@ signal hit_by_asteroid(ship_global_position: Vector2, lives_remaining: int)
 
 var laser_scene = preload("res://Jeu/Laser/laser.tscn")
 @export var max_fuel : float = 100.0
-@export var fuel_consumption_per_second : float = 25.0
+@export var fuel_consumption_per_second : float = 10.0
 @export var max_lives : int = 3
 @export var invincibility_duration : float = 2.0
 var fuel : float = max_fuel

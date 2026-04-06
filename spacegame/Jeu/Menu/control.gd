@@ -30,25 +30,44 @@ func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
 func add_planete(planete : Planet) -> void:
+	# --- EXCLUSION DU SOLEIL ---
+	# On vérifie si le nom est "Sol" (en minuscules pour être sûr)
+	if planete.name.to_lower() == "sol" or planete.name.to_lower() == "soleil":
+		return # Stop ! On ne crée rien, on passe à la planète suivante
+	# ---------------------------
+
 	var button = Button.new()
 	button.text = planete.name
 	button.pressed.connect(get_parent()._planet_button_pressed.bind(planete.name))
+	
 	var container = MarginContainer.new()
 	container.add_child(button)
 	$Planetes.add_child(container)
 
+
 func display_level_desc(desc : String, planetName : String) -> void:
 	$%Description.text = desc
 	$%TargetPlanetName.text = planetName
+	
+	print("Planète sélectionnée : ", planetName)
+
+	# On gère les variantes pour être SUR que Piranha active le mode 1
+	match planetName:
+		"Sombreros":
+			Settings.game_mode = 2
+		"Planete Piranha": 
+			Settings.game_mode = 1
+		"Tequiland":
+			Settings.game_mode = 0
+		_:
+			Settings.game_mode = 0
+			
 	$DescriptionNiveau.show()
 
+# Le bouton Play lance juste le jeu avec le mode déjà choisi au-dessus
 func _on_play_button_pressed() -> void:
-	var mode_selector = $DescriptionNiveau/ModeSelector
-	if mode_selector:
-		Settings.game_mode = mode_selector.selected
+	# On a supprimé ModeSelector, donc on retire les lignes qui l'utilisaient
 	get_tree().change_scene_to_file("res://Jeu/jeu.tscn")
-
-# --- Collection ---
 
 func _on_collection_button_pressed() -> void:
 	_populate_collection_grid()

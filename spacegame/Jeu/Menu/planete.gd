@@ -8,6 +8,7 @@ class_name Planet
 @export var isSun : bool = false
 @export var LevelDescription : String
 @export var has_sombrero : bool = false
+@export var hasBottle : bool = false # Assure-toi que c'est bien écrit comme ça dans ton script de génération
 
 func _ready() -> void:
 
@@ -26,11 +27,21 @@ func _ready() -> void:
 	if isSun and has_node("OmniLight3D"):
 		$Planete/OmniLight3D.visible = true
 		
+	# --- LOGIQUE SOMBRERO ---
 	if has_sombrero:
 		var sombrero = load("res://Jeu/Menu/Sombrero.tscn").instantiate()
 		$Planete.add_child(sombrero)
 		sombrero.position = Vector3(0, 0.45, 0)
 		sombrero.scale = Vector3(0.7, 0.7, 0.7)
+	
+	# --- LOGIQUE BOUTEILLE ---
+	if hasBottle:
+		var bouteille = load("res://Jeu/Menu/Tequila.tscn").instantiate()
+		$Planete.add_child(bouteille)
+		bouteille.position = Vector3(0, 0.5, 0)
+		bouteille.scale = Vector3(0.5, 0.5, 0.5)
+	
+		
 func _process(delta: float) -> void:
 
 	if has_node("Planete"):
